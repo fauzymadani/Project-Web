@@ -18,22 +18,22 @@ class AnggotaController extends Controller
     {
         //
         $anggota = Anggota::all();
-        return view ('anggota.index', ['anggota'=>$anggota]);
+        return view('anggota.index', ['anggota' => $anggota]);
     }
 
     /**
- * Show the form for creating a new resource.
- *
- * @return \Illuminate\View\View
- */
-public function create(): \Illuminate\View\View
-{
-    // Mendapatkan data buku
-    $buku = Buku::all();
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function create(): \Illuminate\View\View
+    {
+        // Mendapatkan data buku
+        $buku = Buku::all();
 
-    // Mengembalikan view dengan data buku
-    return view('anggota.create', ['buku' => $buku]);
-}
+        // Mengembalikan view dengan data buku
+        return view('anggota.create', ['buku' => $buku]);
+    }
 
 
     /**
@@ -41,49 +41,51 @@ public function create(): \Illuminate\View\View
      */
     public function store(Request $request)
     {
-        //
         $request->validate([
-            'nia'=> 'required',
-            'nama_anggota'=> 'required',
-            'buku_yang_dibaca'=> 'required',
-            'alamat'=> 'required',
-            'jenis_kelamin'=> 'required',
-            'foto'=> 'required|mimes:jpeg,jpg,png,gif',
-
-        ],[
-            'nip.required' => 'NIA Wajib Diisi!',
-            'nama_anggota.required' => 'Nama ANGGOTA Wajib Diisi!',
-            'alamat.required' => 'Alamat ANGGOTA Wajib Diisi!',
-            'jenis_kelamin.required' => 'Data Jenis Kelamin Wajib Diisi!',
+            'nia' => 'required',
+            'nama_anggota' => 'required',
+            'buku_yang_dibaca' => 'required|integer',
+            'buku_id' => 'required',
+            'alamat' => 'required',
+            'jenis_kelamin' => 'required',
+            'foto' => 'required|mimes:jpeg,jpg,png,gif',
+        ], [
+            'nia.required' => 'NIA Wajib Diisi!',
+            'nama_anggota.required' => 'Nama Anggota Wajib Diisi!',
+            'buku_id.required' => 'Buku Wajib Diisi!',
+            'alamat.required' => 'Alamat Wajib Diisi!',
+            'jenis_kelamin.required' => 'Jenis Kelamin Wajib Diisi!',
             'foto.required' => 'Foto Wajib Diisi!',
-            'foto.mimes' => 'Foto Boleh Berekstensi jpeg, jpg, png, dan gif',
-
+            'foto.mimes' => 'Foto hanya boleh berekstensi jpeg, jpg, png, atau gif',
         ]);
+
         $foto_file = $request->file('foto');
-        $foto_ekstensi = $foto_file->extension();
-        $foto_nama = date('ymdhis'). "." .$foto_ekstensi;
+        $foto_nama = time() . "_" . uniqid() . "." . $foto_file->extension();
         $foto_file->move(public_path('foto'), $foto_nama);
 
         $data = [
-            'nia'=> $request->input('nia'),
-            'nama_anggota'=> $request->input('nama_anggota'),
-            'gaji_anggota'=> $request->input('gaji_anggota'),
-            'alamat'=> $request->input('alamat'),
-            'jenis_kelamin'=> $request->input('jenis_kelamin'),
-            'foto'=> $foto_nama,
-            'buku_id' => $request->input('buku_id'),
+            'nia' => $request->nia,
+            'nama_anggota' => $request->nama_anggota,
+            'buku_yang_dibaca' => $request->buku_yang_dibaca,  // Menambahkan kolom buku_yang_dibaca
+            'alamat' => $request->alamat,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'buku_id' => $request->buku_id,
+            'foto' => $foto_nama,
         ];
 
         Anggota::create($data);
-        return redirect('anggota')->with('success', 'Data Anggota Berhasil Ditambahkan!');
+
+        return redirect()->route('anggota.index')->with('success', 'Data Anggota Berhasil Ditambahkan!');
     }
+
+
 
     /**
      * Display the specified resource.
      */
     public function show(Anggota $anggota)
     {
-        //
+        return view('anggota.show', ['anggota' => $anggota]);
     }
 
     /**
@@ -94,10 +96,13 @@ public function create(): \Illuminate\View\View
         $data = Anggota::where('nia', $id)->first();
         $buku = Buku::all();
 
-        return view('anggota.edit',
-        [
-        'buku' => $buku,
-        'data'=> $data]);
+        return view(
+            'anggota.edit',
+            [
+                'buku' => $buku,
+                'data' => $data
+            ]
+        );
     }
 
 
@@ -108,14 +113,14 @@ public function create(): \Illuminate\View\View
     {
         // Validasi input
         $request->validate([
-            'nip'=> 'required',
-            'nama_anggota'=> 'required',
+            'nia' => 'required',
+            'nama_anggota' => 'required',
             'buku_id' => 'required',
-            'gaji_anggota'=> 'required',
-            'alamat'=> 'required',
-            'jenis_kelamin'=> 'required',// pastikan buku_id valid
-        ],[
-            'nip.required' => 'NIP Wajib Diisi!',
+            'gaji_anggota' => 'required',
+            'alamat' => 'required',
+            'jenis_kelamin' => 'required', // pastikan buku_id valid
+        ], [
+            'nia.required' => 'NIP Wajib Diisi!',
             'nama_anggota.required' => 'Nama Anggota Wajib Diisi!',
             'buku_id' => 'Buku Wajib Diisi',
             'buku_yang_dibaca.required' => 'Gaji Anggota Wajib Diisi!',
@@ -124,11 +129,11 @@ public function create(): \Illuminate\View\View
         ]);
 
         // Ambil data ANGGOTA berdasarkan nip
-        $data = Anggota::where('nip', $id)->first();
+        $data = Anggota::where('nia', $id)->first();
 
         // Perbarui data anggota dengan data baru
         $data->update([
-            'nip' => $request->nip,
+            'nia' => $request->nia,
             'nama_anggota' => $request->nama_anggota,
             'buku_id' => $request->buku_id,
             'buku_yang_dibaca' => $request->gaji_anggota,
@@ -149,7 +154,7 @@ public function create(): \Illuminate\View\View
         //
 
         $data = Anggota::where('nia', $id)->first();
-        File::delete(public_path('foto').'/'.$data->foto);
+        File::delete(public_path('foto') . '/' . $data->foto);
 
         Anggota::where('nia', $id)->delete();
         return redirect('anggota')->with('success', 'Data Berhasil Dihapus!');

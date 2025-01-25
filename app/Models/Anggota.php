@@ -10,18 +10,19 @@ class Anggota extends Model
     use HasFactory;
     protected $table = 'anggota';
     protected $fillable = [
-        'nip',
+        'nia',
         'nama_anggota',
         'buku_yang_dibaca',
+        'buku_id',
         'alamat',
         'jenis_kelamin',
-        'buku_id',
         'foto',
-
     ];
 
-    public function buku() {
+
+
+    public function buku()
+    {
         return $this->belongsTo('App\Models\Buku');
     }
-
 }
