@@ -1,6 +1,7 @@
 @extends('layouts/app')
 @section('content')
-    <form action="{{ route('buku.store') }}" method="POST" enctype="multipart/form-data">
+    <!--<form action="{{ route('buku.store') }}" method="POST" enctype="multipart/form-data">-->
+    <form action="{{ route('anggota.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-12">
@@ -34,22 +35,22 @@
                                 <option value="Wanita">Wanita</option>
                             </select>
                         </div>
-                          
+
                         <div class="form-group">
                             <label for="foto" >Upload Foto Anggota</label>
                             <input type="file" id="foto" class="form-control-file" name="foto" accept="image/*"
                                 required>
                         </div>
 
-                        <div class="from-group">
-                            <label > Buku </label>
-                             <select name="buku_id" class="custom-select">
-                                @foreach ( $buku as $item )
-                                <option value="{{$item->id}}">{{$item->nama_anggota}}</option>
+        <div class="form-group">
+            <label>Buku</label>
+            <select name="buku_id" class="custom-select">
+                @foreach ($buku as $item)
+                    <option value="{{ $item->id }}">{{ $item->nama_buku }}</option>
+                @endforeach
+            </select>
+        </div>
 
-                                @endforeach
-                             </select>
-                    </div>
 
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Simpan</button>

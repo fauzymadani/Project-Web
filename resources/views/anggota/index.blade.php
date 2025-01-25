@@ -54,31 +54,31 @@
                                     </thead>
                                     <tbody>
                                         <?php $no = 1 ?>
-                                        @foreach($anggota as $anggota)
-                                        <tr>
-                                            <td>{{$no++}}</td>
-                                            <td>
-                                                @if ($anggota->foto)
-                                                <img style="max: width 100px; max-height:100px"  src="{{url('foto').'/'.$anggota->foto}}">
-                                                @endif
-                                            </td>
-                                            <td>{{$anggota->nia}}</td>
-                                            <td>{{$anggota->nama_anggota}}</td>
-                                            <td>{{$anggota->jenis_kelamin}}</td>
-                                            <td>{{$anggota->buku['nama_buku']}}</td>
-                                            <td>{{$anggota->buku_yang_dipinjam}}</td>
-                                            <td>{{$anggota->alamat}}</td>
+                                       @foreach($anggota as $item)
+<tr>
+    <td>{{$no++}}</td>
+    <td>
+        @if ($item->foto)
+        <img style="max-width: 100px; max-height: 100px;" src="{{ url('foto/'.$item->foto) }}">
+        @endif
+    </td>
+    <td>{{$item->nia}}</td>
+    <td>{{$item->nama_anggota}}</td>
+    <td>{{$item->jenis_kelamin}}</td>
+    <td>{{ $item->buku ? $item->buku->nama_buku : 'Tidak ada data' }}</td>
+    <td>{{$item->buku_yang_dipinjam}}</td>
+    <td>{{$item->alamat}}</td>
+    <td>
+        <a class="btn btn-sm btn-primary" href="{{ url('anggota/'.$item->nia.'/edit') }}">Edit</a>
+        <button class="btn btn-sm btn-danger delete-btn" data-id="{{ $item->nia }}">Delete</button>
+        <form id="delete-form-{{$item->nia}}" action="{{ url('anggota/'.$item->nia) }}" method="POST" style="display: none;">
+            @csrf
+            @method('DELETE')
+        </form>
+    </td>
+</tr>
+@endforeach
 
-                                            <td>
-                                                <a class="btn btn-sm btn-primary" href="{{url('anggota/'.$anggota->nia.'/edit')}}">Edit</a>
-                                                <button class="btn btn-sm btn-danger delete-btn" data-id="{{$anggota->nia}}">Delete</button>
-                                                <form id="delete-form-{{$anggota->nia}}" action="{{url('anggota/'.$anggota->nia)}}" method="POST" style="display: none;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
-                                            </td>
-                                        </tr>
-                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
