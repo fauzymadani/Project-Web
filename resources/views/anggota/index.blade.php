@@ -66,7 +66,7 @@
     <td>{{$item->nama_anggota}}</td>
     <td>{{$item->jenis_kelamin}}</td>
     <td>{{ $item->buku ? $item->buku->nama_buku : 'Tidak ada data' }}</td>
-    <td>{{$item->buku_yang_dipinjam}}</td>
+    <td>{{$item->buku_yang_dibaca ?? 'Tidak ada data'}}</td> <!-- Tambahkan pengecekan jika null -->
     <td>{{$item->alamat}}</td>
     <td>
         <a class="btn btn-sm btn-primary" href="{{ url('anggota/'.$item->nia.'/edit') }}">Edit</a>

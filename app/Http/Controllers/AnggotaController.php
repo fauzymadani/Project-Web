@@ -115,34 +115,54 @@ class AnggotaController extends Controller
         $request->validate([
             'nia' => 'required',
             'nama_anggota' => 'required',
+            'buku_yang_dibaca' => 'required',
             'buku_id' => 'required',
-            'gaji_anggota' => 'required',
             'alamat' => 'required',
-            'jenis_kelamin' => 'required', // pastikan buku_id valid
+            'jenis_kelamin' => 'required',
+            'foto' => 'nullable|mimes:jpeg,jpg,png,gif',
         ], [
-            'nia.required' => 'NIP Wajib Diisi!',
+            'nia.required' => 'NIA Wajib Diisi!',
             'nama_anggota.required' => 'Nama Anggota Wajib Diisi!',
-            'buku_id' => 'Buku Wajib Diisi',
-            'buku_yang_dibaca.required' => 'Gaji Anggota Wajib Diisi!',
-            'alamat.required' => 'Alamat Anggota Wajib Diisi!',
-            'jenis_kelamin.required' => 'Data Jenis Kelamin Wajib Diisi!',
+            'buku_id.required' => 'Buku Wajib Diisi!',
+            'buku_yang_dibaca.required' => 'Buku Yang Dibaca Wajib Diisi!',
+            'alamat.required' => 'Alamat Wajib Diisi!',
+            'jenis_kelamin.required' => 'Jenis Kelamin Wajib Diisi!',
+            'foto.mimes' => 'Foto hanya boleh berekstensi jpeg, jpg, png, atau gif',
         ]);
 
-        // Ambil data ANGGOTA berdasarkan nip
+        // Ambil data anggota berdasarkan NIA
         $data = Anggota::where('nia', $id)->first();
 
-        // Perbarui data anggota dengan data baru
+        // Cek apakah ada file foto baru diunggah
+        if ($request->hasFile('foto')) {
+            // Hapus foto lama jika ada
+            if ($data->foto && File::exists(public_path('foto/' . $data->foto))) {
+                File::delete(public_path('foto/' . $data->foto));
+            }
+
+            // Simpan foto baru
+            $foto_file = $request->file('foto');
+            $foto_nama = time() . "_" . uniqid() . "." . $foto_file->extension();
+            $foto_file->move(public_path('foto'), $foto_nama);
+
+            // Update data dengan foto baru
+            $data->foto = $foto_nama;
+        }
+
+        // Perbarui data lainnya
         $data->update([
             'nia' => $request->nia,
             'nama_anggota' => $request->nama_anggota,
             'buku_id' => $request->buku_id,
-            'buku_yang_dibaca' => $request->gaji_anggota,
+            'buku_yang_dibaca' => $request->buku_yang_dibaca,
             'alamat' => $request->alamat,
-            'jenis_kelamin' => $request->jenis_kelamin, // update buku_id
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'foto' => $data->foto, // Simpan foto baru jika ada, atau tetap gunakan yang lama
         ]);
 
         return redirect()->route('anggota.index')->with('success', 'Data berhasil diperbarui');
     }
+
 
 
 
