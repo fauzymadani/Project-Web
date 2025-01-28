@@ -23,7 +23,7 @@
             <i class="fas fa-fw fa-table"></i>
             <span>Data Anggota</span></a>
     </li>
-    
+
     <li class="nav-item active">
         <a class="nav-link" href="{{ route('buku.index') }}">
             <i class="fas fa-fw fa-table"></i>
@@ -42,6 +42,13 @@
             <i class="fas fa-fw fa-table"></i>
             <span>Data Peminjaman</span></a>
     </li>
+
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ route('commits.index') }}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Change Log</span></a>
+    </li>
+
 
     <!-- Divider -->
 
