@@ -1,5 +1,6 @@
 @extends('layouts/app')
 @section('content')
+@include('components.modal')
     <div class="row">
         <h3>Abdulloh Faqih XI PPL 2</h3>
         <!-- Earnings (Monthly) Card Example -->
