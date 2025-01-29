@@ -1,3 +1,12 @@
+<style>
+.collapse-inner .collapse-item:hover {
+    background-color: #004080 !important; /* Biru tua */
+    color: white !important; /* Teks tetap putih */
+}
+
+
+</style>
+
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
@@ -12,38 +21,39 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+    <li class="nav-item">
         <a class="nav-link" href="{{ route('dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>Dashboard</span>
+        </a>
     </li>
 
-    <li class="nav-item active">
-        <a class="nav-link" href="{{ route('anggota.index') }}">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Data Anggota</span></a>
-    </li>
-    
-    <li class="nav-item active">
-        <a class="nav-link" href="{{ route('buku.index') }}">
-            <i class="fas fa-fw fa-table"></i>
-            <span> Buku</span></a>
-    </li>
-
-
-    <li class="nav-item active">
-        <a class="nav-link" href="{{ route('anggota.index') }}">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Kategori Buku</span></a>
+    <!-- Folder Data -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseData"
+            aria-expanded="true" aria-controls="collapseData">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Data</span>
+        </a>
+        <div id="collapseData" class="collapse" aria-labelledby="headingData" data-parent="#accordionSidebar">
+            <div class="bg-primary text-white py-2 collapse-inner rounded">
+                <a class="collapse-item text-white" href="{{ route('anggota.index') }}">├── Data Anggota</a>
+                <a class="collapse-item text-white" href="{{ route('buku.index') }}">├── Buku</a>
+                <a class="collapse-item text-white" href="{{ route('anggota.index') }}">├── Kategori Buku</a>
+                <a class="collapse-item text-white" href="{{ route('anggota.index') }}">└── Data Peminjaman</a>
+            </div>
+        </div>
     </li>
 
-    <li class="nav-item active">
-        <a class="nav-link" href="{{ route('anggota.index') }}">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Data Peminjaman</span></a>
+    <!-- Change Log -->
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('commits.index') }}">
+            <i class="fas fa-fw fa-code-branch"></i>
+            <span>Change Log</span>
+        </a>
     </li>
-
-    <!-- Divider -->
-
 
 </ul>
+<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+

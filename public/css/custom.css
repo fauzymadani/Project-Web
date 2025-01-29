@@ -1,0 +1,23 @@
+.nord-modal {
+    background-color: #2E3440 !important;
+    color: #D8DEE9 !important;
+}
+
+.nord-modal .modal-header {
+    background-color: #3B4252 !important;
+    color: #ECEFF4 !important;
+}
+
+.nord-modal .modal-footer {
+    background-color: #3B4252 !important;
+}
+
+.nord-modal .btn-primary {
+    background-color: #5E81AC !important;
+    border-color: #5E81AC !important;
+}
+
+.nord-modal .btn-secondary {
+    background-color: #4C566A !important;
+    border-color: #4C566A !important;
+}
