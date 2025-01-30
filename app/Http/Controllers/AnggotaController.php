@@ -28,10 +28,8 @@ class AnggotaController extends Controller
      */
     public function create(): \Illuminate\View\View
     {
-        // Mendapatkan data buku
         $buku = Buku::all();
 
-        // Mengembalikan view dengan data buku
         return view('anggota.create', ['buku' => $buku]);
     }
 
@@ -66,7 +64,7 @@ class AnggotaController extends Controller
         $data = [
             'nia' => $request->nia,
             'nama_anggota' => $request->nama_anggota,
-            'buku_yang_dibaca' => $request->buku_yang_dibaca,  // Menambahkan kolom buku_yang_dibaca
+            'buku_yang_dibaca' => $request->buku_yang_dibaca,
             'alamat' => $request->alamat,
             'jenis_kelamin' => $request->jenis_kelamin,
             'buku_id' => $request->buku_id,
@@ -130,26 +128,20 @@ class AnggotaController extends Controller
             'foto.mimes' => 'Foto hanya boleh berekstensi jpeg, jpg, png, atau gif',
         ]);
 
-        // Ambil data anggota berdasarkan NIA
         $data = Anggota::where('nia', $id)->first();
 
-        // Cek apakah ada file foto baru diunggah
         if ($request->hasFile('foto')) {
-            // Hapus foto lama jika ada
             if ($data->foto && File::exists(public_path('foto/' . $data->foto))) {
                 File::delete(public_path('foto/' . $data->foto));
             }
 
-            // Simpan foto baru
             $foto_file = $request->file('foto');
             $foto_nama = time() . "_" . uniqid() . "." . $foto_file->extension();
             $foto_file->move(public_path('foto'), $foto_nama);
 
-            // Update data dengan foto baru
             $data->foto = $foto_nama;
         }
 
-        // Perbarui data lainnya
         $data->update([
             'nia' => $request->nia,
             'nama_anggota' => $request->nama_anggota,
@@ -157,7 +149,7 @@ class AnggotaController extends Controller
             'buku_yang_dibaca' => $request->buku_yang_dibaca,
             'alamat' => $request->alamat,
             'jenis_kelamin' => $request->jenis_kelamin,
-            'foto' => $data->foto, // Simpan foto baru jika ada, atau tetap gunakan yang lama
+            'foto' => $data->foto,
         ]);
 
         return redirect()->route('anggota.index')->with('success', 'Data berhasil diperbarui');

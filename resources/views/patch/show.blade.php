@@ -12,7 +12,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 </head>
 <body>
-    <h1>Detail Commit</h1>
+    <h1># Commit Detail</h1>
 
     @if(isset($error))
         <p>{{ $error }}</p>
@@ -24,7 +24,7 @@
         <pre><code class="language-diff">{{ $patchContent }}</code></pre>
     @endif
 
-    <a href="{{ route('commits.index') }}">Kembali ke Daftar Commit</a>
+    <a href="{{ route('commits.index') }}">Back to commit list</a>
 
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {

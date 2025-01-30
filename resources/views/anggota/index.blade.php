@@ -5,6 +5,11 @@
 <p class="alert alert-success">{{session('success')}}</p>
 @endif
 
+<style>
+.delete-btn {
+    background-color: #bf616a !important;
+}
+</style>
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -70,7 +75,7 @@
     <td>{{$item->alamat}}</td>
     <td>
         <a class="btn btn-sm btn-primary" href="{{ url('anggota/'.$item->nia.'/edit') }}">Edit</a>
-        <button class="btn btn-sm btn-danger delete-btn" data-id="{{ $item->nia }}">Delete</button>
+        <button class="del-btn btn btn-sm text-white" data-id="{{ $item->nia }}">Delete</button>
         <form id="delete-form-{{$item->nia}}" action="{{ url('anggota/'.$item->nia) }}" method="POST" style="display: none;">
             @csrf
             @method('DELETE')

@@ -1,50 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Git Commit Viewer</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/nord-highlightjs@0.1.0/dist/nord.css" rel="stylesheet" type="text/css" />
-    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.css">-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    </head>
-<body>
-<header><span><a href="{{route('dashboard')}}"><button>back</button></a></span></header>
-    <h1 id="header"># Commit Log - {{ $repoOwner }}/{{ $repoName }}</h1>
-    <p><strong>⚠️ if there's a warning/error occured when visiting this page, try to visit another time or refresh the page, it may caused by 'curl', not the server nor the code.
-    <br>
-    <br>
-    <i style="color: #ebcb8b;">~ Website Maintainer</i>
-    </strong>
-
-    </p>
-    <hr>
-
-    @if(isset($error))
-        <p>{{ $error }}</p>
-    @else
-        <ul>
-            @foreach ($commits as $commit)
-                <li>
-                    <a href="{{ route('commits.show', ['sha' => $commit['sha']]) }}">
-                        {{ $commit['commit']['message'] }}
-                    </a>
-                    - {{ $commit['commit']['author']['name'] }}
-                    ({{ $commit['commit']['author']['date'] }})
-                </li>
-            @endforeach
-        </ul>
-    @endif
-    <br>
-    <hr>
-    <hr>
-    <br>
-    <br>
-    <h2 id="license">## This Project is protected under the GPL 3.0 License</h2>
-    <pre><code class="language-c">
-                     GNU GENERAL PUBLIC LICENSE
+                    GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 
  Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
@@ -710,21 +664,11 @@ might be different; for a GUI interface, you would use an "about box".
   You should also get your employer (if you work as a programmer) or school,
 if any, to sign a "copyright disclaimer" for the program, if necessary.
 For more information on this, and how to apply and follow the GNU GPL, see
-<pre><code>{!! htmlspecialchars('<https://www.gnu.org/licenses/>') !!}</code></pre>.
+<https://www.gnu.org/licenses/>.
 
   The GNU General Public License does not permit incorporating your program
 into proprietary programs.  If your program is a subroutine library, you
 may consider it more useful to permit linking proprietary applications with
 the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
-{!! htmlspecialchars('<https://www.gnu.org/licenses/why-not-lgpl.html>') !!}.
-    </code></pre>
-     <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            hljs.highlightAll();
-        });
-    </script>
-    <script>hljs.highlightAll();</script>
-</body>
-</html>
-
+<https://www.gnu.org/licenses/why-not-lgpl.html>.
