@@ -12,7 +12,8 @@ class Buku extends Model
     protected $primarykey = 'kodebuku';
     protected $fillable = ['nama_buku'];
 
-    public function Anggota(){
+    public function Anggota()
+    {
 
         return $this->Hasmany('App\Models\Anggota');
     }

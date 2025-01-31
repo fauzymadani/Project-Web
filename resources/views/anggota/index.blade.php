@@ -51,8 +51,7 @@
                                             <th>Nia</th>
                                             <th>Nama Anggota</th>
                                             <th>Jenis Kelamin</th>
-                                            <th>Buku yang Dipinjam</th>
-                                            <th>Buku Yang Dibaca</th>
+                                            <th>tugas</th>
                                             <th>Alamat</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -70,8 +69,8 @@
     <td>{{$item->nia}}</td>
     <td>{{$item->nama_anggota}}</td>
     <td>{{$item->jenis_kelamin}}</td>
-    <td>{{ $item->buku ? $item->buku->nama_buku : 'Tidak ada data' }}</td>
-    <td>{{$item->buku_yang_dibaca ?? 'Tidak ada data'}}</td> <!-- Tambahkan pengecekan jika null -->
+    <!--<td>{{$item->role->nama ?? 'Tidak ada tugas'}}</td>-->
+    <td>{{$item->role->roles ?? 'Tidak ada tugas'}}</td>
     <td>{{$item->alamat}}</td>
     <td>
         <a class="btn btn-sm btn-primary" href="{{ url('anggota/'.$item->nia.'/edit') }}">Edit</a>

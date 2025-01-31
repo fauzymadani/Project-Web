@@ -17,6 +17,7 @@ class Anggota extends Model
         'alamat',
         'jenis_kelamin',
         'foto',
+        'role_id',
     ];
 
 
@@ -24,5 +25,11 @@ class Anggota extends Model
     public function buku()
     {
         return $this->belongsTo('App\Models\Buku');
+    }
+
+    public function role()
+    {
+        /*return $this->belongsTo('App\Models\Role');*/
+        return $this->belongsTo(Role::class, 'role_id');
     }
 }

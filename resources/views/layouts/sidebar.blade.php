@@ -20,7 +20,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Sisfo Anggota</div>
+        <div class="sidebar-brand-text mx-3">Library system</div>
     </a>
 
     <!-- Divider -->
@@ -47,6 +47,7 @@
                 <a class="collapse-item text-white" href="{{ route('buku.index') }}">Buku</a>
                 <a class="collapse-item text-white" href="{{ route('anggota.index') }}">Kategori Buku</a>
                 <a class="collapse-item text-white" href="{{ route('anggota.index') }}">Data Peminjaman</a>
+                <a class="collapse-item text-white" href="{{ route('roles.index') }}">Roles</a>
             </div>
         </div>
     </li>
