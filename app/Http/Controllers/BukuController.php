@@ -14,7 +14,7 @@ class BukuController extends Controller
     {
         //
         $buku = Buku::all();
-        return view('buku.index', ['buku'=>$buku]);
+        return view('buku.index', ['buku' => $buku]);
     }
 
     /**
@@ -23,7 +23,7 @@ class BukuController extends Controller
     public function create()
     {
         //
-        return view ('buku.create');
+        return view('buku.create');
     }
 
     /**
@@ -36,9 +36,9 @@ class BukuController extends Controller
             'nama_buku' => 'required',
         ]);
         Buku::create([
-            'nama_buku' =>$request->nama_buku,
+            'nama_buku' => $request->nama_buku,
         ]);
-        return redirect('buku')->with('success','Buku berhasil ditambahkan');
+        return redirect('buku')->with('success', 'Buku berhasil ditambahkan');
     }
 
     /**
@@ -55,8 +55,8 @@ class BukuController extends Controller
     public function edit($id)
     {
         //
-        $data = Buku::where('id',$id)->first();
-        return view('buku.edit')->with('data',$data);
+        $data = Buku::where('id', $id)->first();
+        return view('buku.edit')->with('data', $data);
     }
 
     /**
@@ -69,10 +69,10 @@ class BukuController extends Controller
             'nama_buku' => 'required',
         ]);
         $data = ([
-            'nama_buku' =>$request->nama_buku,
+            'nama_buku' => $request->nama_buku,
         ]);
-        Buku::where('id',$id)->update($data);
-        return redirect('buku')->with('success','Buku berhasil Di Update!');
+        Buku::where('id', $id)->update($data);
+        return redirect('buku')->with('success', 'Buku berhasil Di Update!');
     }
 
     /**
@@ -81,7 +81,7 @@ class BukuController extends Controller
     public function destroy($id)
     {
         //
-        Buku::where('id',$id)->delete();
-        return redirect('buku')->with('success','Buku berhasil dihapus!');
+        Buku::where('id', $id)->delete();
+        return redirect('buku')->with('success', 'Buku berhasil dihapus!');
     }
 }

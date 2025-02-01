@@ -19,10 +19,7 @@
                             <label for="nama_anggota">Nama Anggota</label>
                             <input type="text" id="nama_anggota" class="form-control" name="nama_anggota" required>
                         </div>
-                        <div class="form-group">
-                            <label for="buku_yang_dibaca">Jumlah Buku Yang Dibaca</label>
-                            <input type="number" id="buku_yang_dibaca" class="form-control" name="buku_yang_dibaca" required>
-                        </div>
+
                         <div class="form-group">
                             <label for="alamat">Alamat</label>
                             <textarea id="alamat" class="form-control" name="alamat" required></textarea>
@@ -42,14 +39,13 @@
                                 required>
                         </div>
 
-        <div class="form-group">
-            <label>Buku</label>
-            <select name="buku_id" class="custom-select">
-                @foreach ($buku as $item)
-                    <option value="{{ $item->id }}">{{ $item->nama_buku }}</option>
-                @endforeach
-            </select>
-        </div>
+                <select name="role_id" required>
+    @foreach($role as $r)
+        <option value="{{ $r->id }}">{{ $r->roles }}</option>
+    @endforeach
+</select>
+
+
 
 
                     <div class="card-footer">

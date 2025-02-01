@@ -1,4 +1,6 @@
 @import url('https://fonts.cdnfonts.com/css/jetbrains-mono');
+@import url('https://fonts.cdnfonts.com/css/lt-binary-neue');
+@import url('https://fonts.cdnfonts.com/css/monalisa-serif');
 
 body {
     font-family: 'JetBrains Mono', sans-serif;
@@ -22,6 +24,8 @@ h6 {
 a {
     color: #88c0d0;
     text-decoration: none;
+    font-family: 'LT Binary Neue', sans-serif;
+    font-family: 'LT Binary Neue Round', sans-serif;
 }
 
 a:hover {
@@ -81,13 +85,13 @@ code {
     color: #81a1c1;
 }
 
-header {
-    background-color: #4c566a;
-    padding: 10px 20px;
-    color: #eceff4;
-    text-align: center;
-    border-bottom: 2px solid #5e81ac;
-}
+/*header {*/
+/*    background-color: #4c566a;*/
+/*    padding: 10px 20px;*/
+/*    color: #eceff4;*/
+/*    text-align: center;*/
+/*    border-bottom: 2px solid #5e81ac;*/
+/*}*/
 
 footer {
     background-color: #4c566a;
@@ -109,4 +113,41 @@ html {
 
 h2 {
     font-family: 'JetBrains Mono', sans-serif;
+}
+
+hr {
+    border: none;
+    border-top: 2px dashed #ccc;
+    background: none;
+    height: 0;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #3b4252;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #81a1c1;
+    border-radius: 10px;
+    border: 2px solid #3b4252;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #88c0d0;
+}
+
+strong {
+    display: block;
+    background-color: #4c566a;
+    color: #eceff4;
+    border-left: 5px solid #bf616a;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }

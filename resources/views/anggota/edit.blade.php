@@ -34,12 +34,6 @@
                             <input type="text" class="form-control" name="nama_anggota" value="{{ old('nama_anggota', $data->nama_anggota) }}">
                         </div>
 
-                        {{-- Buku Yang Dibaca --}}
-                        <div class="form-group">
-                            <label for="buku_yang_dibaca"> Buku Yang Dibaca</label>
-                            <input type="number" class="form-control" name="buku_yang_dibaca" value="{{ old('buku_yang_dibaca', $data->buku_yang_dibaca) }}">
-                        </div>
-
                         {{-- Alamat --}}
                         <div class="form-group">
                             <label for="alamat">Alamat</label>
@@ -66,17 +60,19 @@
                             <input type="file" id="foto" class="form-control-file" name="foto">
                         </div>
 
-                        <div class="form-group">
-                            <label for="buku_id">Buku Yang Dipinjam</label>
-                            <select name="buku_id" class="form-control" required>
-                                <option value="" disabled selected>-- Pilih Buku --</option>
+                    <div class="form-group">
+    <label for="role_id">Tugas Bagian:</label>
+    <select name="role_id" class="form-control" required>
+        <option value="" disabled>-- Pilih Tugas --</option>
+        @foreach($role as $r)
+            <option value="{{ $r->id }}"
+                {{ old('role_id', $data->role_id) == $r->id ? 'selected' : '' }}>
+                {{ $r->roles }}
+            </option>
+        @endforeach
+    </select>
+</div>
 
-                                @foreach ($buku as $item)
-
-                                <option value="{{$item->id}}" {{ $data->buku_id == $item->id ? 'selected' : ''}}>{{$item->nama_buku}}</option>
-                                @endforeach
-                            </select>
-                        </div>
 
 
                     <div class="card-footer">
