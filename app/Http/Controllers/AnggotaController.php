@@ -93,11 +93,13 @@ class AnggotaController extends Controller
     {
         $data = Anggota::where('nia', $id)->first();
         $buku = Buku::all();
+        $role = Role::all();
 
         return view(
             'anggota.edit',
             [
                 'buku' => $buku,
+                'role' => $role,
                 'data' => $data
             ]
         );

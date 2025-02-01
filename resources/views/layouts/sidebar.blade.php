@@ -1,7 +1,10 @@
 <style>
 .collapse-inner .collapse-item:hover {
-    background-color: #81a1c1 !important; /* Biru tua */
-    color: white !important; /* Teks tetap putih */
+    background-color: #81a1c1 !important;
+    color: white !important;
+    box-shadow: 0 0 10px #88c0d0;
+    border-radius: 5px;
+    transform: scale(1.02);
 }
 
 .navbar-nav {
@@ -11,12 +14,34 @@
 .navbar-nav .nav-link:hover {
     background-color: #81a1c1 !important;
 }
+
+.nav-item {
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-item:hover {
+    box-shadow: 0 0 10px #88c0d0;
+    border-radius: 5px;
+    transform: scale(1.02);
+}
+
+.nav-link {
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+    background-color: #81a1c1 !important;
+    color: #eceff4 !important;
+    box-shadow: 0 0 15px #81a1c1;
+}
+
 </style>
 
 <ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('dashboard')}}">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
@@ -36,7 +61,7 @@
 
     <!-- Folder Data -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseData"
+        <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseData"
             aria-expanded="true" aria-controls="collapseData">
             <i class="fas fa-fw fa-folder"></i>
             <span>Data</span>
@@ -52,6 +77,7 @@
         </div>
     </li>
 
+
     <!-- Change Log -->
     <li class="nav-item">
         <a class="nav-link" href="{{ route('commits.index') }}">
@@ -61,28 +87,4 @@
     </li>
 
 </ul>
-<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<script>
-$(document).ready(function () {
-    $('.nav-link[data-toggle="collapse"]').on('click', function (e) {
-        var target = $(this).attr('data-target');
-        var isOpen = $(target).hasClass('show');
-
-        // Tutup semua dropdown lain
-        $('.collapse').collapse('hide');
-
-        // Jika sebelumnya sudah terbuka, tutup
-        if (isOpen) {
-            $(target).collapse('hide');
-            $(this).attr('aria-expanded', 'false');
-        } else {
-            $(target).collapse('show');
-            $(this).attr('aria-expanded', 'true');
-        }
-    });
-});
-</script>
-
-
-
