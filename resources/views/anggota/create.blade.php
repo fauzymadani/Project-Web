@@ -38,12 +38,14 @@
                             <input type="file" id="foto" class="form-control-file" name="foto" accept="image/*"
                                 required>
                         </div>
-
-                <select name="role_id" required>
-    @foreach($role as $r)
-        <option value="{{ $r->id }}">{{ $r->roles }}</option>
-    @endforeach
-</select>
+                        <div class="from-group">
+                            <label > Tugas </label>
+                            <select name="role_id" required>
+                                @foreach($role as $r)
+                                  <option value="{{ $r->id }}">{{ $r->roles }}</option>
+                                   @endforeach
+                            </select>
+                    </div>
 
 
 

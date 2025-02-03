@@ -18,6 +18,7 @@ class Anggota extends Model
         'jenis_kelamin',
         'foto',
         'role_id',
+        'peminjaman_id'
     ];
 
 

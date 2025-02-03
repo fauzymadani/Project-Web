@@ -70,8 +70,8 @@
             <div class="text-white py-2 collapse-inner rounded">
                 <a class="collapse-item text-white" href="{{ route('anggota.index') }}">Data Anggota</a>
                 <a class="collapse-item text-white" href="{{ route('buku.index') }}">Buku</a>
-                <a class="collapse-item text-white" href="{{ route('anggota.index') }}">Kategori Buku</a>
-                <a class="collapse-item text-white" href="{{ route('anggota.index') }}">Data Peminjaman</a>
+                <a class="collapse-item text-white" href="{{ route('kategori.index') }}">Kategori Buku</a>
+                <a class="collapse-item text-white" href="{{ route('peminjaman.index') }}">Data Peminjaman</a>
                 <a class="collapse-item text-white" href="{{ route('roles.index') }}">Roles</a>
             </div>
         </div>

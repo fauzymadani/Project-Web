@@ -17,4 +17,9 @@ class Buku extends Model
 
         return $this->Hasmany('App\Models\Anggota');
     }
+    public function Peminjaman()
+    {
+
+        return $this->Hasmany('App\Models\Peminjaman');
+    }
 }

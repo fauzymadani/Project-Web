@@ -63,7 +63,7 @@
                     <div class="form-group">
     <label for="role_id">Tugas Bagian:</label>
     <select name="role_id" class="form-control" required>
-        <option value="" disabled>-- Pilih Tugas --</option>
+        
         @foreach($role as $r)
             <option value="{{ $r->id }}"
                 {{ old('role_id', $data->role_id) == $r->id ? 'selected' : '' }}>
