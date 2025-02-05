@@ -51,7 +51,7 @@ class PeminjamanController extends Controller
             'nisn.required' => 'NISN Wajib Diisi!',
             'nama_peminjam.required' => 'Nama Peminjam Wajib Diisi!',
             'tanggal_pinjam.required' => 'Tanggal_Pinjam Wajib Diisi!',
-            'tanggal_dikembalikan.required' => 'Tanggal_Dipinjam Wajib Diisi!',
+            'tanggal_dikembalikan.required' => 'Tanggal_Dikembalikan Wajib Diisi!',
             'buku_id' => 'wajib diisi ini!',
         ]);
 
@@ -100,47 +100,38 @@ class PeminjamanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
-    {
-        // Validasi input
-        $request->validate([
-            'nisn' => 'required',
-            'nama_peminjam' => 'required',
-            'tanggal_pinjam' => 'required',
-            'tanggal_dikembalikan' => 'required',
-            'buku_id' => 'required',
-        ], [
-            'nisn.required' => 'NISN Wajib Diisi!',
-            'nama_peminjam.required' => 'Nama Peminjam Wajib Diisi!',
-            'tanggal_pinjam.required' => 'Tanggal_Pinjam Wajib Diisi!',
-            'tanggal_dikembalikan.required' => 'Tanggal_Dipinjam Wajib Diisi!',
-            'buku_id' => 'ini juga wajib diisi ya atminn!',
-        ]);
+   public function update(Request $request, $id)
+{
+    // Validasi input
+    $request->validate([
+        'nisn' => 'required',
+        'nama_peminjam' => 'required',
+        'tanggal_pinjam' => 'required',
+        'tanggal_dikembalikan' => 'required',
+        'buku_id' => 'required',
+    ], [
+        'nisn.required' => 'NISN Wajib Diisi!',
+        'nama_peminjam.required' => 'Nama Peminjam Wajib Diisi!',
+        'tanggal_pinjam.required' => 'Tanggal Pinjam Wajib Diisi!',
+        'tanggal_dikembalikan.required' => 'Tanggal Dikembalikan Wajib Diisi!',
+        'buku_id' => 'ini juga wajib diisi ya atminn!',
+    ]);
 
-        $data = Peminjaman::where('nisn', $id)->first();
+    // Ambil data yang akan diupdate
+    $data = Peminjaman::where('nisn', $id)->first();
 
-        if ($request->hasFile('foto')) {
-            if ($data->foto && File::exists(public_path('foto/' . $data->foto))) {
-                File::delete(public_path('foto/' . $data->foto));
-            }
+    // Update data
+    $data->update([
+        'nisn' => $request->nisn,
+        'nama_peminjam' => $request->nama_peminjam,
+        'tanggal_pinjam' => $request->tanggal_pinjam,
+        'tanggal_dikembalikan' => $request->tanggal_dikembalikan,
+        'buku_id' => $request->buku_id,
+    ]);
 
-            $foto_file = $request->file('foto');
-            $foto_nama = time() . "_" . uniqid() . "." . $foto_file->extension();
-            $foto_file->move(public_path('foto'), $foto_nama);
+    return redirect()->route('peminjaman.index')->with('success', 'Data berhasil diperbarui');
+}
 
-            $data->foto = $foto_nama;
-        }
-
-        $data->update([
-            'nisn' => $request->nisn,
-            'nama_peminjam' => $request->nama_peminjam,
-            'tanggal_pinjam' => $request->tanggal_pinjam,
-            'tanggal_dikembalikan' => $request->tanggal_dikembalikan,
-            'buku_id' => $request->buku_id,
-        ]);
-
-        return redirect()->route('peminjaman.index')->with('success', 'Data berhasil diperbarui');
-    }
 
 
 

@@ -12,7 +12,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label>Kategori Buku</label>
-                            <input type="text" class="form-control" name="kategori"
+                            <input type="text" class="form-control" name="kategori_buku"
                                 value="{{ $data->kategori_buku }}">
                         </div>
 

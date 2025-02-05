@@ -47,10 +47,10 @@
                                     <thead>
                                         <tr>
                                             <th>Nisn</th>
-                                            <th>Nama_Peminjam</th>
-                                            <th>Tanggal_Pinjam</th>
-                                            <th>Buku_Yang_Dipinjam</th>
-                                            <th>Tanggal_Dikembalikan</th>
+                                            <th>Nama Peminjam</th>
+                                            <th>Tanggal Pinjam</th>
+                                            <th>Buku Yang Dipinjam</th>
+                                            <th>Tanggal Dikembalikan</th>
                                             <th>Aksi</th>
                                             
                                         </tr>
@@ -63,18 +63,20 @@
     <td>{{$item->nisn}}</td>
     <td>{{$item->nama_peminjam}}</td>
     <td>{{$item->tanggal_pinjam}}</td>
-    <td>{{$item->buku->buku ?? 'Tidak ada '}}</td>
+    <td>{{$item->buku->nama_buku ?? 'Tidak ada buku?? '}}</td>
     <td>{{$item->tanggal_dikembalikan}}</td>
     <td>
         <a class="btn btn-sm btn-primary" href="{{ url('peminjaman/'.$item->nisn.'/edit') }}">Edit</a>
-        <button class="del-btn btn btn-sm text-white" data-id="{{ $item->nisn }}">Delete</button>
-        <form id="delete-form-{{$item->nisn}}" action="{{ url('peminjaman/'.$item->nisn) }}" method="POST" style="display: none;">
-            @csrf
-            @method('DELETE')
-        </form>
-    </td>
-</tr>
-@endforeach
+        <form action="{{ url('peminjaman/' . $item->id) }}"
+           method="POST" style="display: inline-block">
+         @csrf
+         @method('Delete')
+         <button class="btn btn-danger"
+         onclick="return confirm ('apakah anda ingin menghapus data?')">Delete</button>
+         </form>
+        </td>
+     </tr>
+   @endforeach
 
                                     </tbody>
                                 </table>
@@ -98,32 +100,7 @@
 
     </div>
 
-    <!-- Tambahkan SweetAlert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const deleteButtons = document.querySelectorAll('.delete-btn');
-            deleteButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const nisn = this.getAttribute('data-id');
-                    Swal.fire({
-                        title: 'Apakah Anda yakin?',
-                        text: "Data yang dihapus seperti masa lalu",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Ya, hapus!',
-                        cancelButtonText: 'Batal'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            document.getElementById(`delete-form-${nisn}`).submit();
-                        }
-                    });
-                });
-            });
-        });
-    </script>
+
 
 </body>
 

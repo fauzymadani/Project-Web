@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nama_peminjam');
             $table->text('tanggal_pinjam');
             $table->text('tanggal_dikembalikan');
+            $table->integer('buku_id');
             $table->timestamps();
         });
     }

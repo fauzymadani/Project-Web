@@ -168,6 +168,6 @@ class AnggotaController extends Controller
         File::delete(public_path('foto') . '/' . $data->foto);
 
         Anggota::where('nia', $id)->delete();
-        return redirect('anggota')->with('success', 'Data Berhasil Dihapus!');
+        return redirect('anggota')->with('success', 'Kategori Buku berhasil dihapus!');
     }
 }

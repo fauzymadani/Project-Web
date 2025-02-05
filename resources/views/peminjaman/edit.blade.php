@@ -43,22 +43,21 @@
                         {{-- Tanggal Dikembalikan --}}
                         <div class="form-group">
                             <label for="tanggal_dikembalikan">Tanggal Dikembalikan</label>
-                            <textarea class="form-control" name="alamat">{{ old('tanggal_dikembalikan', $data->tanggal_dikembalikan) }}</textarea>
+                            <textarea class="form-control" name="tanggal_dikembalikan">{{ old('tanggal_dikembalikan', $data->tanggal_dikembalikan) }}</textarea>
                         </div>
 
+                        <div class="form-group">
+                            <label for="buku_id">Buku Yang Dipinjam</label>
+                            <select name="buku_id" class="form-control" required>
+                                <option value="" disabled selected>-- Pilih Buku --</option>
 
-                    <div class="form-group">
-    <label for="buku_id">Buku Yang Dipinjam:</label>
-    <select name="buku_id" class="form-control" required>
-        <option value="" disabled>-- Pilih Buku --</option>
-        @foreach($buku as $r)
-            <option value="{{ $r->id }}"
-                {{ old('buku_id', $data->buku_id) == $item->id }}>
-                {{ $r->buku }}
-            </option>
-        @endforeach
-    </select>
-</div>
+                                @foreach ($buku as $item)
+
+                                <option value="{{$item->id}}" {{ $data->buku_id == $item->id ? 'selected' : ''}}>{{$item->nama_buku}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
 
 
 

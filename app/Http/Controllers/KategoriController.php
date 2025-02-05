@@ -69,7 +69,7 @@ class KategoriController extends Controller
             'kategori_buku' => 'required',
         ]);
         $data = ([
-            'kategori_buku' => $request->nama_buku,
+            'kategori_buku' => $request->kategori_buku,
         ]);
         Kategori::where('id', $id)->update($data);
         return redirect('kategori')->with('success', 'Kategori Buku berhasil Di Update!');
@@ -82,6 +82,6 @@ class KategoriController extends Controller
     {
         //
         Kategori::where('id', $id)->delete();
-        return redirect('Kategori')->with('success', 'Kategori Buku berhasil dihapus!');
+        return redirect('kategori')->with('success', 'Kategori Buku berhasil dihapus!');
     }
 }
