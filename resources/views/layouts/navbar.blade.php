@@ -16,6 +16,11 @@
 i {
     color: white !important;
 }
+
+.dropdown-menu {
+    z-index: 9999 !important;
+}
+
 </style>
 
 <nav class="navbar navbar-expand topbar mb-4 static-top shadow">
@@ -196,14 +201,14 @@ i {
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
                 </a>
-                <a class="dropdown-item" href="#">
+                {{-- <a class="dropdown-item" href="#">
                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                     Settings
-                </a>
-                <a class="dropdown-item" href="#">
+                </a> --}}
+                {{-- <a class="dropdown-item" href="#">
                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                     Activity Log
-                </a>
+                </a> --}}
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/sesi/logout" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -215,3 +220,7 @@ i {
     </ul>
 
 </nav>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
