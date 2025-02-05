@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class BukuController extends Controller
@@ -20,12 +21,13 @@ class BukuController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): \Illuminate\View\View
     {
-        //
-        return view('buku.create');
-    }
+        $kategori = Kategori::all();
+       
 
+        return view('buku.create', ['kategori' => $kategori]); // Kirim variabel ke view
+    }
     /**
      * Store a newly created resource in storage.
      */
@@ -34,9 +36,11 @@ class BukuController extends Controller
         //
         $request->validate([
             'nama_buku' => 'required',
+            'kategori_id' => 'required',
         ]);
         Buku::create([
             'nama_buku' => $request->nama_buku,
+            'kategori_id' => $request->kategori_id,
         ]);
         return redirect('buku')->with('success', 'Buku berhasil ditambahkan');
     }
@@ -56,7 +60,8 @@ class BukuController extends Controller
     {
         //
         $data = Buku::where('id', $id)->first();
-        return view('buku.edit')->with('data', $data);
+        $kategori = Kategori::all();
+        return view('buku.edit', ['kategori' => $kategori])->with('data', $data);
     }
 
     /**
@@ -67,9 +72,11 @@ class BukuController extends Controller
         //
         $request->validate([
             'nama_buku' => 'required',
+            'kategori_id' => 'required',
         ]);
         $data = ([
             'nama_buku' => $request->nama_buku,
+            'kategori_id' => $request->kategori_id,
         ]);
         Buku::where('id', $id)->update($data);
         return redirect('buku')->with('success', 'Buku berhasil Di Update!');

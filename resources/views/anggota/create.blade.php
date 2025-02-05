@@ -40,7 +40,7 @@
                         </div>
                         <div class="from-group">
                             <label > Tugas </label>
-                            <select name="role_id" required>
+                            <select name="role_id" class="custom-select">
                                 @foreach($role as $r)
                                   <option value="{{ $r->id }}">{{ $r->roles }}</option>
                                    @endforeach

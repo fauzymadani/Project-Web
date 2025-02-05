@@ -14,6 +14,14 @@
                             <input type="text" class="form-control" name="nama_buku"
                                 value="{{ old('nama_buku') }}">
                         </div>
+                        <div class="form-group">
+                            <label >Kategori </label>
+                            <select name="kategori_id"class="custom-select">
+                                @foreach($kategori as $item)
+                                  <option value="{{ $item->id }}">{{ $item->kategori_buku}}</option>
+                                   @endforeach
+                            </select>
+                    </div>
 
                     </div>
                     <div class="card-footer">
