@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Faqih.id.com</title>
+    <title>Lib.co.id</title>
 
     <!-- Custom fonts for this template-->
 

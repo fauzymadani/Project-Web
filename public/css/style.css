@@ -151,3 +151,8 @@ strong {
     font-weight: bold;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
+
+span {
+    font-family: monospace !important;
+    background-color: #3b4252;
+}

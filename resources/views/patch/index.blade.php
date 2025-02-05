@@ -13,7 +13,7 @@
 <body>
 <header><span><a href="{{route('dashboard')}}"><button>back</button></a></span></header>
     <h1 id="header"># Commit Log - {{ $repoOwner }}/{{ $repoName }}</h1>
-    <p><strong>⚠️ if there's a warning/error occured when visiting this page, try to visit another time or refresh the page, it may caused by 'curl', not the server nor the code.
+    <p><strong>⚠️ if there's a warning/error occured when visiting this page, try to visit another time or refresh the page, it may caused by 'curl', not the server nor the code. or download <a href=" http://curl.haxx.se/ca/cacert.pem">this</a> and then open your <span>php.ini</span> and find <span>;curl.cainfo</span> change to <span>curl.cainfo = "C:\path\to\your\pem\cacert.pem"</span>
     <br>
     <br>
     <i style="color: #ebcb8b;">~ Website Maintainer</i>
