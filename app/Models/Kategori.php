@@ -13,4 +13,10 @@ class Kategori extends Model
     protected $table = 'kategori';
     protected $primarykey = 'id';
     protected $fillable = ['kategori_buku'];
+
+public function buku()
+{
+
+    return $this->Hasmany('App\Models\Buku');
+}
 }

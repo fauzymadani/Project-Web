@@ -41,6 +41,7 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Nama Buku</th>
+                                                <th>Kategori</th>
                                                 <th>Aksi</th>
 
                                             </tr>
@@ -52,6 +53,7 @@
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
                                                     <td>{{ $dept->nama_buku }}</td>
+                                                    <td>{{ $dept->kategori->kategori_buku ?? 'Tidak ada kategori?? '}}</td>
                                                     <td>
                                                         <a class="btn btn-sm btn-primary"
                                                             href="{{ url('buku/' . $dept->id . '/edit') }}">Edit</a>

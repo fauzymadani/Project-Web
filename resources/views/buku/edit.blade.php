@@ -15,6 +15,17 @@
                             <input type="text" class="form-control" name="nama_buku"
                                 value="{{ $data->nama_buku }}">
                         </div>
+                        <div class="form-group">
+                            <label for="kategori_id">Kategori</label>
+                            <select name="kategori_id" class="form-control" required>
+                                <option value="" disabled selected> Pilih Kategori</option>
+
+                                @foreach ($kategori as $item)
+
+                                <option value="{{$item->id}}" {{ $data->kategori_id == $item->id ? 'selected' : ''}}>{{$item->kategori_buku}}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
                     </div>
                     <div class="card-footer">

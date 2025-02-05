@@ -30,7 +30,7 @@
                         </div>
                         <div class="from-group">
                             <label > Buku Yang Dipinjam </label>
-                            <select name="buku_id" required>
+                            <select name="buku_id" class="custom-select">
                                 @foreach($buku as $item)
                                   <option value="{{ $item->id }}">{{ $item->nama_buku }}</option>
                                    @endforeach

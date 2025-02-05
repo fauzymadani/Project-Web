@@ -10,7 +10,11 @@ class Buku extends Model
     use HasFactory;
     protected $table = 'buku';
     protected $primarykey = 'kodebuku';
-    protected $fillable = ['nama_buku'];
+    protected $fillable = [
+        'nama_buku',
+        'kategori_id'
+    
+    ];
 
     public function Anggota()
     {
@@ -21,5 +25,9 @@ class Buku extends Model
     {
 
         return $this->Hasmany('App\Models\Peminjaman');
+    }
+    public function Kategori()
+    {
+        return $this->belongsTo('App\Models\Kategori');
     }
 }

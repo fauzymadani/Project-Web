@@ -67,7 +67,7 @@
     <td>{{$item->tanggal_dikembalikan}}</td>
     <td>
         <a class="btn btn-sm btn-primary" href="{{ url('peminjaman/'.$item->nisn.'/edit') }}">Edit</a>
-        <form action="{{ url('peminjaman/' . $item->id) }}"
+        <form action="{{ url('peminjaman/' . $item->nisn) }}"
            method="POST" style="display: inline-block">
          @csrf
          @method('Delete')
