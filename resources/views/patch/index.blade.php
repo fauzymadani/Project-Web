@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Git Commit Viewer</title>
+    <title>Changelog</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/nord-highlightjs@0.1.0/dist/nord.css" rel="stylesheet" type="text/css" />
@@ -13,7 +13,7 @@
 <body>
 <header><span><a href="{{route('dashboard')}}"><button>back</button></a></span></header>
     <h1 id="header"># Commit Log - {{ $repoOwner }}/{{ $repoName }}</h1>
-    <p><strong>⚠️ if there's a warning/error occured when visiting this page, try to visit another time or refresh the page, it may caused by 'curl', not the server nor the code. or download <a href=" http://curl.haxx.se/ca/cacert.pem">this</a> and then open your <span>php.ini</span> and find <span>;curl.cainfo</span> change to <span>curl.cainfo = "C:\path\to\your\pem\cacert.pem"</span>
+    <p><strong>⚠️ if there's a warning/error occured when visiting this page, try to visit another time or refresh the page, it may caused by 'curl', not the server nor the code. or download <a href=" http://curl.haxx.se/ca/cacert.pem">this</a> and then open your <span class="warn">php.ini</span> and find <span class="warn">;curl.cainfo</span> change to <span class="warn">curl.cainfo = "C:\path\to\your\pem\cacert.pem"</span>
     <br>
     <br>
     <i style="color: #ebcb8b;">~ Website Maintainer</i>
