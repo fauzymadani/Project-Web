@@ -4,7 +4,7 @@
 
 body {
     font-family: 'JetBrains Mono', sans-serif;
-    background-color: #3b4252;
+    background-color: #292a2d;
     color: #d8dee9;
     margin: 10px;
     padding: 10px;
@@ -143,7 +143,7 @@ hr {
 
 strong {
     display: block;
-    background-color: #4c566a;
+    background-color: #212327;
     color: #eceff4;
     border-left: 5px solid #bf616a;
     padding: 10px 15px;
@@ -154,7 +154,7 @@ strong {
 
 .warn {
     font-family: monospace !important;
-    background-color: #3b4252;
+    background-color: #4b4b51;
     padding: 4px;
     border-radius: 5px;
 }

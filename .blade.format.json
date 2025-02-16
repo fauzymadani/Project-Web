@@ -1,0 +1,19 @@
+{
+  "indentSize": 4,
+  "wrapLineLength": 120,
+  "wrapAttributes": "force-expand-multiline",
+  "useTabs": false,
+  "sortTailwindcssClasses": true,
+  "customHtmlAttributesOrder": [
+    "class",
+    "id",
+    "name",
+    "data-.*",
+    "src",
+    "href",
+    "alt",
+    "title"
+  ],
+  "formatPhp": true
+}
+

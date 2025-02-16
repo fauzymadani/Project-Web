@@ -12,7 +12,9 @@ class Buku extends Model
     protected $primarykey = 'kodebuku';
     protected $fillable = [
         'nama_buku',
-        'kategori_id'
+        'kategori_id',
+        'file_pdf',
+        "deskripsi"
     
     ];
 

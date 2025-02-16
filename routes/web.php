@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GithubController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\BacaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +21,9 @@ use App\Http\Controllers\KategoriController;
 |
 */
 
-Route::get("/", function () {
+Route::get("/admin", function () {
     return view("dashboard");
-})->name("dashboard");
+})->middleware("iniLogin")->name("dashboard");
 
 Route::resource("buku", BukuController::class)->middleware("iniLogin");
 Route::resource("anggota", AnggotaController::class)->middleware("iniLogin");
@@ -52,6 +53,10 @@ Route::get("/commits/{sha}", [GithubController::class, "show"])->name(
     "commits.show"
 );
 
-Route::get("/baca", function () {
-    return view("baca");
-});
+/*Route::get("/baca", function () {*/
+/*    return view("baca");*/
+/*});*/
+
+// Route::get('/baca', [BacaController::class, 'index']);
+Route::get('/', [BukuController::class, 'daftarBuku'])->name('buku.baca');
+

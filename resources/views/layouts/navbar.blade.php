@@ -1,6 +1,6 @@
 <style>
 .navbar {
-    background-color: #2e3440 !important;
+    background-color: #212327 !important;
     color: #d8dee9;
 }
 
@@ -8,15 +8,6 @@
     background-color: #4c566a !important;
     color: #d8dee9;
 }
-
-.btn {
-    background-color: #5e81ac !important;
-}
-
-i {
-    color: white !important;
-}
-
 .dropdown-menu {
     z-index: 9999 !important;
 }
