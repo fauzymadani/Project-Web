@@ -3,23 +3,54 @@
 @include('components.modal')
 
 <style>
-body {
-    background-color: #4c566a !important;
-}
-.card {
-    background-color: #3b4252 !important;
-    color: white;
-    border: none;
-}
-.card-header {
-    background-color: #2e3440 !important;
-    font-weight: bold;
-}
+    body {
+        background-color: #1E1E1E !important;
+        color: #EAEAEA !important;
+        font-family: 'Inter', sans-serif;
+    }
+
+    h3 {
+        color: #FFFFFF;
+    }
+
+    .card {
+        background-color: #252525 !important;
+        color: #EAEAEA;
+        border: 1px solid #333;
+        border-radius: 12px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-header {
+        background-color: #181818 !important;
+        color: #EAEAEA;
+        font-weight: bold;
+        border-bottom: 1px solid #333;
+        padding: 15px;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .table-dark {
+        background-color: #222;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .table-dark th, .table-dark td {
+        color: #EAEAEA;
+        border-color: #333;
+        padding: 12px;
+    }
+
+    /* Hover effect pada daftar buku */
+    .table-dark tbody tr:hover {
+        background-color: #333;
+    }
 </style>
 
 <div class="row">
     <div class="col-lg-12">
-        <h3 class="text-black">📊 Statistik Peminjaman Buku</h3>
+        <h3>📊 Statistik Peminjaman Buku</h3>
     </div>
 </div>
 
@@ -98,8 +129,9 @@ body {
                     label: 'Total Dipinjam',
                     data: [30, 25, 20, 18, 15],
                     backgroundColor: ['#81a1c1', '#88c0d0', '#8fbcbb', '#a3be8c', '#b48ead'],
-                    borderColor: '#2e3440',
-                    borderWidth: 1
+                    borderColor: 'rgba(255, 255, 255, 0.1)',
+                    borderWidth: 0,
+                    borderRadius: 8
                 }]
             },
             options: {
@@ -109,19 +141,25 @@ body {
                     y: {
                         beginAtZero: true,
                         ticks: {
-                            color: 'white'
+                            color: '#EAEAEA'
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
                         }
                     },
                     x: {
                         ticks: {
-                            color: 'white'
+                            color: '#EAEAEA'
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
                         }
                     }
                 },
                 plugins: {
                     legend: {
                         labels: {
-                            color: 'white'
+                            color: '#EAEAEA'
                         }
                     }
                 }

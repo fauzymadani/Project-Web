@@ -1,41 +1,40 @@
 <style>
 .collapse-inner .collapse-item:hover {
-    background-color: #81a1c1 !important;
+    background-color: #404045 !important;
     color: white !important;
-    box-shadow: 0 0 10px #88c0d0;
     border-radius: 5px;
     transform: scale(1.02);
 }
 
 .navbar-nav {
-    background-color: #2e3440;
+    background-color: #212327;
 }
 
-.navbar-nav .nav-link:hover {
-    background-color: #81a1c1 !important;
-}
+/*.navbar-nav .nav-link:hover {*/
+/*    background-color: #81a1c1 !important;*/
+/*}*/
 
 .nav-item {
     position: relative;
     transition: all 0.3s ease-in-out;
 }
 
-.nav-item:hover {
-    box-shadow: 0 0 10px #88c0d0;
-    border-radius: 5px;
-    transform: scale(1.02);
-}
+/*.nav-item:hover {*/
+/*    box-shadow: 0 0 10px #88c0d0;*/
+/*    border-radius: 5px;*/
+/*    transform: scale(1.02);*/
+/*}*/
 
 .nav-link {
     transition: all 0.3s ease-in-out;
 }
 
-.nav-link:hover {
-    background-color: #81a1c1 !important;
-    color: #eceff4 !important;
-    box-shadow: 0 0 15px #81a1c1;
-}
-
+/*.nav-link:hover {*/
+/*    background-color: #81a1c1 !important;*/
+/*    color: #eceff4 !important;*/
+/*    box-shadow: 0 0 15px #81a1c1;*/
+/*}*/
+/**/
 </style>
 
 <ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar">
