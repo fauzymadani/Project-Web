@@ -72,6 +72,7 @@
                 <a class="collapse-item text-white" href="{{ route('kategori.index') }}">Kategori Buku</a>
                 <a class="collapse-item text-white" href="{{ route('peminjaman.index') }}">Data Peminjaman</a>
                 <a class="collapse-item text-white" href="{{ route('roles.index') }}">Roles</a>
+                <a class="collapse-item text-white" href="{{ route('admin.articles.index') }}">Tambah Artikel</a
             </div>
         </div>
     </li>
