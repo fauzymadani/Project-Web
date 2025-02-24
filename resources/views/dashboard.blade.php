@@ -47,6 +47,22 @@
         background-color: #333;
     }
 </style>
+<div class="container">
+    <h2>Panel Admin - Generate Hash Baru</h2>
+    <button id="generateHash" class="btn btn-primary">Generate Hash Baru</button>
+</div>
+
+<script>
+document.getElementById("generateHash").addEventListener("click", function() {
+    fetch("/generate-hash", { method: "POST" })
+        .then(response => response.json())
+        .then(data => {
+            alert("Hash berhasil diperbarui!");
+            location.reload();
+        })
+        .catch(error => alert("Gagal memperbarui hash!"));
+});
+</script>
 
 <div class="row">
     <div class="col-lg-12">

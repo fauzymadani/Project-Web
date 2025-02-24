@@ -12,7 +12,7 @@ use App\Http\Controllers\BacaController;
 use App\Http\Controllers\ArticleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use App\Http\Controllers\HashController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -83,12 +83,10 @@ Route::prefix('adminartikel')->group(function () {
 Route::post('/upload-image', function (Request $request) {
     if ($request->hasFile('image')) {
         $image = $request->file('image');
-        $path = $image->store('public/images');
-
-        $url = Storage::url($path); // Menghasilkan URL agar bisa diakses publik
+        $path = $image->store('images', 'public'); // Simpan di storage/public/images
         return response()->json([
             'success' => 1,
-            'file' => ['url' => asset($url)]
+            'file' => ['url' => asset('storage/' . $path)] // Akses dari storage/
         ]);
     }
 
@@ -96,3 +94,6 @@ Route::post('/upload-image', function (Request $request) {
 })->name('upload.image');
 
 Route::get('/list', [BukuController::class, 'fetchBuku'])->name('buku.list');
+Route::get('/file-hash', [HashController::class, 'index'])->name('hashes');
+Route::post('/generate-hash', [HashController::class, 'generateHash']);
+Route::get('/validate-hash', [HashController::class, 'validateHashes'])->name('validate.hash');

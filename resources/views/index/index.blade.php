@@ -1,7 +1,6 @@
 @extends('layouts.index.public')
 
 @section('content')
-<!-- Tambahkan ini di blade view admin -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/2.0.0/trix.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/2.0.0/trix.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
@@ -42,7 +41,7 @@
             <h2 class="fw-semibold text-primary mb-4">Buku</h2>
             @foreach ($buku->take(3) as $item)
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100 shadow border-0 rounded overflow-hidden transition-card" data-aos="fade-up">
+                    <div class="card card-hover h-100 shadow border-0 rounded overflow-hidden transition-card">
                         <div class="card-body d-flex flex-column">
                             <h4 class="card-title text-primary">{{ $item->nama_buku }}</h4>
                             <p class="text-muted mb-1"><strong>Kategori:</strong> {{ $item->kategori->kategori_buku ?? 'Tidak ada kategori' }}</p>
@@ -74,12 +73,12 @@
         <hr>
     </section>
     <!-- Section Artikel -->
-    <section class="section-3 pt-5" id="artikel">
+    <section class="section-3 pt-5 mb-5" id="artikel">
         <div class="row">
             <h2 class="fw-semibold text-primary mb-4">📝 Artikel Terbaru</h2>
             @foreach ($articles as $article)
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100 shadow border-0 rounded overflow-hidden transition-card" data-aos="fade-up">
+                    <div class="card h-100 shadow border-0 rounded overflow-hidden transition-card">
                         <div class="card-body d-flex flex-column">
     @if($article->image)
         <!--<img src="{{ asset('storage/' . $article->image) }}" class="img-fluid rounded" style="height: 250px;">-->
@@ -101,6 +100,49 @@
             <a href="{{ route('artikel.index') }}" class="btn btn-lg btn-outline-primary" data-aos="fade-up">📰 Lihat Semua Artikel</a>
         </div>
     </section>
+    <hr>
+    <!-- Section Testimoni -->
+<section class="section-4 pt-5" id="testimoni">
+    <div class="text-center mb-4">
+        <h2 class="fw-semibold text-primary">📢 Testimoni Pengguna</h2>
+        <p class="text-muted">Apa kata mereka tentang perpustakaan ini?</p>
+    </div>
+
+    <div class="testimoni-container" data-aos="fade-up">
+        <button class="scroll-btn left" onclick="scrollLeft()">&#10094;</button>
+        <div class="testimoni-wrapper">
+            <div class="testimoni-slider">
+                <div class="testimoni-card">
+                    <p class="text-secondary fst-italic">"Perpustakaannya keren! Buku digitalnya lengkap banget!"</p>
+                    <h5 class="fw-bold text-primary">- Raka S.</h5>
+                    <div class="text-warning">⭐⭐⭐⭐⭐</div>
+                </div>
+                <div class="testimoni-card">
+                    <p class="text-secondary fst-italic">"Sekarang makin mudah cari referensi buat tugas sekolah!"</p>
+                    <h5 class="fw-bold text-primary">- Nabila A.</h5>
+                    <div class="text-warning">⭐⭐⭐⭐⭐</div>
+                </div>
+                <div class="testimoni-card">
+                    <p class="text-secondary fst-italic">"Fitur eBook-nya bagus! Gak perlu repot minjem langsung ke perpustakaan."</p>
+                    <h5 class="fw-bold text-primary">- Budi P.</h5>
+                    <div class="text-warning">⭐⭐⭐⭐⭐</div>
+                </div>
+                <div class="testimoni-card">
+                    <p class="text-secondary fst-italic">"Website ini membantu banget buat nyari buku referensi!"</p>
+                    <h5 class="fw-bold text-primary">- Lina M.</h5>
+                    <div class="text-warning">⭐⭐⭐⭐</div>
+                </div>
+                <div class="testimoni-card">
+                    <p class="text-secondary fst-italic">"Developer nya jago banget ini buat web kayak gini, apalagi masih pelajar kan! beuhhh, harus di rekomendasi pkl ke PT.Diantara inimahh"</p>
+                    <h5 class="fw-bold text-primary">- Dimas W.</h5>
+                    <div class="text-warning">⭐⭐⭐⭐⭐</div>
+                </div>
+            </div>
+        </div>
+        <button class="scroll-btn right" onclick="scrollRight()">&#10095;</button>
+    </div>
+</section>
+
 </div>
 
 <style>
@@ -135,59 +177,7 @@
         document.getElementById("content-preview").innerHTML = marked.parse(`{!! addslashes($article->content) !!}`);
     });
 </script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    let rickrollLink = document.querySelector('a[href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"]');
-
-    if (rickrollLink) {
-        rickrollLink.addEventListener("click", function (event) {
-            event.preventDefault();
-            rickrollLink.innerText = "Loading...";
-            setTimeout(() => {
-                window.location.href = rickrollLink.href;
-            }, 2000);
-        });
-    }
-});
-</script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    let keyPressed = [];
-    let chaosActive = false;
-
-    document.addEventListener("keydown", function (event) {
-        keyPressed.push(event.key.toLowerCase());
-
-        if (keyPressed.slice(-2).join("") === "dd" && !chaosActive) {
-            chaosActive = true;
-            activateDoomMode();
-        }
-
-        setTimeout(() => keyPressed = [], 1000);
-    });
-
-    function activateDoomMode() {
-        document.body.classList.add("doom-mode");
-
-        document.querySelectorAll("h1, h2, h3, p, a, .card").forEach(el => {
-            el.classList.add("shake");
-        });
-
-        let doomMusic = new Audio("https://doom2.net/doomdepot/music/snes%20doom/e1m1%20-%20at%20doom's%20gate.mp3");
-        doomMusic.loop = true;
-        doomMusic.play();
-
-        setTimeout(() => {
-            document.body.classList.remove("doom-mode");
-            document.querySelectorAll(".shake").forEach(el => el.classList.remove("shake"));
-            doomMusic.pause();
-            doomMusic.currentTime = 0;
-            chaosActive = false;
-        }, 15000);
-    }
-});
-</script>
+<script src="{{ asset('script/main.js') }}"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         AOS.init({

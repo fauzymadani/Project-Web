@@ -35,12 +35,20 @@
 <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        var easyMDE = new EasyMDE({
-            element: document.getElementById("editor"),
-            previewRender: function(plainText) {
-                return easyMDE.markdown(plainText); // Render Markdown langsung
-            }
-        });
+    var easyMDE = new EasyMDE({
+        element: document.getElementById("editor"),
+        spellChecker: false,
+        uploadImage: true, // Aktifkan fitur upload gambar
+        imageUploadEndpoint: "{{ route('upload.image') }}", // Route upload gambar
+        imageMaxSize: 2 * 1024 * 1024, // Batas ukuran (2MB)
+        imageAccept: "image/png, image/jpeg, image/gif", // Format gambar yang diterima
+        previewRender: function(plainText, preview) {
+            setTimeout(function () {
+                preview.innerHTML = easyMDE.markdown(plainText);
+            }, 250);
+            return "Loading preview...";
+        },
     });
+});
 </script>
 

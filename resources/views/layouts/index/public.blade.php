@@ -206,6 +206,75 @@
     .btn-read-more:hover {
         background: #0b5ed7;
     }
+
+    .card-hover {
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+
+    .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .testimoni-container {
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.testimoni-wrapper {
+    overflow-x: hidden; /* Hapus scrollbar */
+    scroll-behavior: smooth;
+    position: relative;
+}
+
+.testimoni-slider {
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+    width: max-content;
+    transition: transform 0.5s ease-in-out; /* Animasi smooth */
+}
+
+.testimoni-card {
+    min-width: 400px;
+    max-width: 400px;
+    height: 200px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 20px;
+    z-index: 10;
+}
+
+.scroll-btn.left {
+    left: 10px;
+}
+
+.scroll-btn.right {
+    right: 10px;
+}
+
+.scroll-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+
     </style>
 
 </head>
@@ -241,6 +310,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ route('buku.baca')}}#artikel">Artikel</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('hashes')}}">Hash</a>
         </li>
       </ul>
       <!-- Left links -->
