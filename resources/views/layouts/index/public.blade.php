@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
     <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <style>
        .navbar-dark .nav-item .nav-link {
   color: #fff;
@@ -119,15 +121,16 @@
             text-align: justify;
         }
 
+       /*buat easter egg */
         .doom-mode {
-    background-color: #8B0000 !important; /* Merah gelap */
-    color: #FFD700 !important; /* Emas */
+    background-color: #8B0000 !important;
+    color: #FFD700 !important;
     filter: invert(1) contrast(2) saturate(2);
     transition: all 0.5s ease-in-out;
 }
 
 .doom-mode h1, .doom-mode h2, .doom-mode h3, .doom-mode p, .doom-mode a {
-    color: #FFD700 !important; /* Warna teks emas */
+    color: #FFD700 !important;
 }
 
 .doom-mode a {
@@ -157,6 +160,52 @@
     animation: shake 0.2s infinite;
 }
 
+.transition-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .transition-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .article-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .article-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .article-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #0d6efd;
+    }
+
+    .article-content {
+        color: #333;
+    }
+
+    .btn-read-more {
+        display: inline-block;
+        padding: 10px 15px;
+        border-radius: 8px;
+        background: #0d6efd;
+        color: white;
+        text-decoration: none;
+        transition: background 0.3s;
+    }
+
+    .btn-read-more:hover {
+        background: #0b5ed7;
+    }
     </style>
 
 </head>
@@ -195,6 +244,14 @@
         </li>
       </ul>
       <!-- Left links -->
+<!--      <audio id="librarySoundtrack" loop>-->
+<!--    <source src="{{ asset('music/music1.mp3') }}" type="audio/mp3">-->
+<!--    Browser Anda tidak mendukung audio tag.-->
+<!--</audio>-->
+<!---->
+<!--<button id="toggleMusic" class="btn btn-outline-primary">-->
+<!--    🎵 Play Musik-->
+<!--</button>-->
 
       <!-- Search form -->
       <form class="d-flex input-group w-auto">
@@ -204,6 +261,8 @@
           Search
         </button>
       </form>
+
+
       <ul class="navbar-nav mb-2 mb-lg-0">
         <!-- Navbar dropdown -->
         <li class="nav-item dropdown">
@@ -376,12 +435,29 @@
     </footer>
 
 <!-- End of .container -->
+    <script src="{{ asset('script/search.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("content-preview").innerHTML = marked.parse(`{!! addslashes($article->content) !!}`);
     });
+
+    document.addEventListener("DOMContentLoaded", function () {
+    let audio = document.getElementById("librarySoundtrack");
+    let button = document.getElementById("toggleMusic");
+
+    button.addEventListener("click", function () {
+        if (audio.paused) {
+            audio.play();
+            button.innerHTML = "⏸️ Pause Musik";
+        } else {
+            audio.pause();
+            button.innerHTML = "🎵 Play Musik";
+        }
+    });
+});
+
 </script>
 
 </body>

@@ -4,33 +4,36 @@
 <!-- Tambahkan ini di blade view admin -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/2.0.0/trix.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/2.0.0/trix.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
 
 <div class="container py-5">
     <!-- Section Sambutan -->
     <section class="section-1 text-center mb-5 pb-5 border-bottom" id="sambutan">
-        <h1 class="fw-bold text-primary" id="sambutan">Selamat Datang di Perpustakaan Online</h1>
+        <h1 class="fw-bold text-primary" id="sambutan" data-aos="fade-up">Selamat Datang di Perpustakaan Online</h1>
 
-        <img src="https://www.pngall.com/wp-content/uploads/15/Doom-Slayer-PNG-Image.png" class="img-fluid my-3" style="max-height: 400px; object-fit: cover;" alt="Doom Slayer">
+        <img src="https://www.pngall.com/wp-content/uploads/15/Doom-Slayer-PNG-Image.png" class="img-fluid my-3" style="max-height: 400px; object-fit: cover;" alt="Doom Slayer" data-aos="fade-up">
 
-        <p class="lead text-secondary fw-semibold">
+        <p class="lead text-primary fw-semibold" data-aos="fade-up">
             Salam sejahtera bagi kita semua,
         </p>
-        <p class="text-secondary">
+        <p class="text-secondary" data-aos="fade-up">
             Puji syukur kita panjatkan ke hadirat Allah SWT atas segala rahmat dan karunia-Nya, sehingga kita dapat terus meningkatkan budaya literasi di sekolah tercinta ini. Perpustakaan merupakan jantung dari dunia pendidikan, tempat di mana ilmu pengetahuan dapat diakses dengan mudah oleh seluruh warga sekolah.
         </p>
-        <p class="text-secondary">
+        <p class="text-secondary" data-aos="fade-up">
             Seiring dengan perkembangan teknologi, kami dengan bangga menghadirkan website resmi **Perpustakaan SMKN 1 Garut** sebagai sarana untuk memberikan layanan yang lebih luas dan mudah diakses. Melalui platform ini, para siswa, guru, dan seluruh civitas akademika dapat mencari dan meminjam buku secara online, mengakses koleksi digital, serta mendapatkan informasi terbaru mengenai kegiatan literasi di perpustakaan.
         </p>
-        <p class="text-secondary">
+        <p class="text-secondary" data-aos="fade-up">
             Kami berharap website ini dapat menjadi jembatan yang menghubungkan siswa dengan dunia ilmu pengetahuan, membangun budaya membaca, serta mendorong semangat belajar yang lebih tinggi. Kami juga mengundang seluruh warga sekolah untuk aktif memanfaatkan fasilitas ini demi meningkatkan kualitas pendidikan kita bersama.
         </p>
-        <p class="fw-semibold text-dark">
+        <p class="fw-semibold text-dark" data-aos="fade-up">
             Wassalamu’alaikum warahmatullahi wabarakatuh.
         </p>
-        <p class="fw-semibold text-primary">
+        <p class="fw-semibold text-primary" data-aos="fade-up">
             "Rip and Tear, until it is Done.."
         </p>
-        <p class="fw-semibold text-dark">~ Doom Slayer</p>
+        <p class="fw-semibold text-dark" data-aos="fade-up">~ Doom Slayer</p>
     </section>
 
     <!-- Section Buku -->
@@ -39,7 +42,7 @@
             <h2 class="fw-semibold text-primary mb-4">Buku</h2>
             @foreach ($buku->take(3) as $item)
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100 shadow border-0 rounded overflow-hidden transition-card">
+                    <div class="card h-100 shadow border-0 rounded overflow-hidden transition-card" data-aos="fade-up">
                         <div class="card-body d-flex flex-column">
                             <h4 class="card-title text-primary">{{ $item->nama_buku }}</h4>
                             <p class="text-muted mb-1"><strong>Kategori:</strong> {{ $item->kategori->kategori_buku ?? 'Tidak ada kategori' }}</p>
@@ -66,7 +69,7 @@
         </div>
 
         <div class="text-center mt-4">
-            <a href="{{ route('buku.list') }}" class="btn btn-lg btn-outline-primary">📚 Lihat Semua Buku</a>
+            <a href="{{ route('buku.list') }}" class="btn btn-lg btn-outline-primary" data-aos="fade-up">📚 Lihat Semua Buku</a>
         </div>
         <hr>
     </section>
@@ -76,11 +79,10 @@
             <h2 class="fw-semibold text-primary mb-4">📝 Artikel Terbaru</h2>
             @foreach ($articles as $article)
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100 shadow border-0 rounded overflow-hidden transition-card">
+                    <div class="card h-100 shadow border-0 rounded overflow-hidden transition-card" data-aos="fade-up">
                         <div class="card-body d-flex flex-column">
-    @if($article->image_url)
-        <!--<img src="{{ asset('uploads/articles/' . $article->image_url) }}" class="img-fluid mb-3 rounded" alt="Gambar Artikel">-->
-        <img src="{{ asset('storage/' . $article->image) }}" class="img-fluid rounded">
+    @if($article->image)
+        <!--<img src="{{ asset('storage/' . $article->image) }}" class="img-fluid rounded" style="height: 250px;">-->
     @endif
     <h4 class="card-title text-primary">{{ $article->title }}</h4>
     <p class="text-muted"><strong>Diposting pada:</strong> {{ $article->created_at->format('d M Y') }}</p>
@@ -96,7 +98,7 @@
         </div>
 
         <div class="text-center mt-4">
-            <a href="{{ route('artikel.index') }}" class="btn btn-lg btn-outline-primary">📰 Lihat Semua Artikel</a>
+            <a href="{{ route('artikel.index') }}" class="btn btn-lg btn-outline-primary" data-aos="fade-up">📰 Lihat Semua Artikel</a>
         </div>
     </section>
 </div>
@@ -112,6 +114,7 @@
     }
 </style>
 @endsection
+<script src="{{ asset('script/search.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/2.0.0/trix.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
 <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
@@ -185,4 +188,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({
+            duration: 1000,
+            once: true,
+            disable: false
+        });
+    });
+</script>
+
 
