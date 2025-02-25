@@ -9,7 +9,10 @@ use App\Http\Controllers\GithubController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\BacaController;
-
+use App\Http\Controllers\ArticleController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\HashController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -59,4 +62,38 @@ Route::get("/commits/{sha}", [GithubController::class, "show"])->name(
 
 // Route::get('/baca', [BacaController::class, 'index']);
 Route::get('/', [BukuController::class, 'daftarBuku'])->name('buku.baca');
+/*Route::resource('articles', ArticleController::class)->middleware('iniLogin');*/
 
+Route::get('/artikel', [ArticleController::class, 'index'])->name('artikel.index');
+/*Route::get('/artikel/{id}', [ArticleController::class, 'show'])->name('artikel.show');*/
+/*Route::get('/artikel/{slug}', [ArticleController::class, 'show'])->name('artikel.show');*/
+Route::get('/artikel/{id}', [ArticleController::class, 'show'])->name('artikel.show');
+
+Route::resource("articles", ArticleController::class)->middleware("iniLogin");
+
+Route::prefix('adminartikel')->group(function () {
+    Route::get('/artikel', [ArticleController::class, 'adminIndex'])->name('admin.articles.index');
+    Route::get('/artikel/create', [ArticleController::class, 'create'])->name('admin.articles.create');
+    Route::get('/artikel/{article}/edit', [ArticleController::class, 'edit'])->name('admin.articles.edit');
+    Route::put('/artikel/{article}', [ArticleController::class, 'update'])->name('admin.articles.update');
+    Route::delete('/artikel/{article}', [ArticleController::class, 'destroy'])->name('admin.articles.destroy');
+});
+
+// ini buat handle image untuk easymde
+Route::post('/upload-image', function (Request $request) {
+    if ($request->hasFile('image')) {
+        $image = $request->file('image');
+        $path = $image->store('images', 'public'); // Simpan di storage/public/images
+        return response()->json([
+            'success' => 1,
+            'file' => ['url' => asset('storage/' . $path)] // Akses dari storage/
+        ]);
+    }
+
+    return response()->json(['success' => 0, 'error' => 'No image uploaded'], 400);
+})->name('upload.image');
+
+Route::get('/list', [BukuController::class, 'fetchBuku'])->name('buku.list');
+Route::get('/file-hash', [HashController::class, 'index'])->name('hashes');
+Route::post('/generate-hash', [HashController::class, 'generateHash']);
+Route::get('/validate-hash', [HashController::class, 'validateHashes'])->name('validate.hash');
