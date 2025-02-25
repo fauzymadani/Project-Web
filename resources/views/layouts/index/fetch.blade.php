@@ -145,17 +145,20 @@
           <a class="nav-link active" aria-current="page" href="{{ route('buku.baca') }}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#sambutan">Sambutan</a>
+          <a class="nav-link" href="{{ route('buku.baca') }}#sambutan">Sambutan</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#buku">Buku</a>
+          <a class="nav-link" href="{{ route('buku.baca') }}#buku">Buku</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Artikel</a>
+          <a class="nav-link" href="{{ route('buku.baca')}}#artikel">Artikel</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('hashes')}}">Hash</a>
+          <a class="nav-link" href="{{ route('site-info')}}">Info</a>
         </li>
+        <!--<li class="nav-item">-->
+        <!--  <a class="nav-link" href="{{ route('hashes')}}">Hash</a>-->
+        <!--</li>-->
       </ul>
       <!-- Left links -->
 
@@ -345,6 +348,7 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="{{ asset('highlight/highlight.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('highlight/styles/github-dark.min.css') }}">
+    <script src="https://kit.fontawesome.com/683c7d9e6d.js" crossorigin="anonymous"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {

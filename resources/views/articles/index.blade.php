@@ -5,6 +5,7 @@
     <h2 class="fw-semibold text-primary mb-4">Artikel Terbaru</h2>
 
     <div class="row">
+    <?php $no = 1; ?>
     @foreach ($articles as $article)
         <div class="col-md-4 mb-4">
             <div class="card shadow border-0 rounded transition-card h-100">

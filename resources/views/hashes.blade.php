@@ -76,6 +76,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <script src="{{ asset('highlight/highlight.min.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('highlight/styles/github-dark.min.css') }}">
-
+<script src="https://kit.fontawesome.com/683c7d9e6d.js" crossorigin="anonymous"></script>
 @endsection
 

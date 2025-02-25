@@ -44,6 +44,22 @@ To check which `php.ini` to edit, you can run:
 ```
 it is recomended to change or edit all of listed `php.ini` files.
 
+## Cronjob
+there are 1 cronjob available for generating a new hash file to be validated, can be triggered with: 
+```bash
+php artisan hash:validate
+```
+to start cronhjob automaticcaly every minute, run: 
+```bash
+php artisan schedule:run
+```
+there are one cronjob that run every minute to update hash running in `Console\Commands\ValidateHash.php`
+cronjob can be checked with
+```bash
+$ crontab -l # example
+* * * * * cd /path/to/your-laravel-project && php artisan schedule:run >> /dev/null 2>&1
+```
+
 ## Donations 
 
 <img height="100" src="https://res.coinpaper.com/coinpaper/f_webp,c_limit,w_3840,q_auto:good/monero_xmr_logo_d7cfda451e.png">

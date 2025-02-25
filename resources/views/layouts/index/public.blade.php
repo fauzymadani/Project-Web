@@ -312,8 +312,11 @@
           <a class="nav-link" href="{{ route('buku.baca')}}#artikel">Artikel</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('hashes')}}">Hash</a>
+          <a class="nav-link" href="{{ route('site-info')}}">Info</a>
         </li>
+        <!--<li class="nav-item">-->
+        <!--  <a class="nav-link" href="{{ route('hashes')}}">Hash</a>-->
+        <!--</li>-->
       </ul>
       <!-- Left links -->
 <!--      <audio id="librarySoundtrack" loop>-->
@@ -510,6 +513,7 @@
     <script src="{{ asset('script/search.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://kit.fontawesome.com/683c7d9e6d.js" crossorigin="anonymous"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("content-preview").innerHTML = marked.parse(`{!! addslashes($article->content) !!}`);

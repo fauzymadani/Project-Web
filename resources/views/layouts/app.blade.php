@@ -103,8 +103,8 @@
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <!--ini buat jquery, di nonaktifin dulu soalnya menyebabkan error buat logout-->
+    <!--<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>-->
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->

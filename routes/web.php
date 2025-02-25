@@ -13,6 +13,7 @@ use App\Http\Controllers\ArticleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\HashController;
+use Illuminate\Support\Facades\File;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -97,3 +98,14 @@ Route::get('/list', [BukuController::class, 'fetchBuku'])->name('buku.list');
 Route::get('/file-hash', [HashController::class, 'index'])->name('hashes');
 Route::post('/generate-hash', [HashController::class, 'generateHash']);
 Route::get('/validate-hash', [HashController::class, 'validateHashes'])->name('validate.hash');
+
+
+Route::get('/site-info', function () {
+    $lastUpdated = File::lastModified(base_path('.env'));
+    $formattedTime = date('Y-m-d H:i:s', $lastUpdated);
+
+    $totalBuku = \App\Models\Buku::count();
+    $totalArticle = \App\Models\Article::count();
+
+    return view('info.index', compact('formattedTime', 'totalBuku', 'totalArticle'));
+})->name('site-info');

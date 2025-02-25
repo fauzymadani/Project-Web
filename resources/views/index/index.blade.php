@@ -9,7 +9,7 @@
 
 <div class="container py-5">
     <!-- Section Sambutan -->
-    <section class="section-1 text-center mb-5 pb-5 border-bottom" id="sambutan">
+    <section class="section-1 text-center mb-5 pb-5 border-bottom">
         <h1 class="fw-bold text-primary" id="sambutan" data-aos="fade-up">Selamat Datang di Perpustakaan Online</h1>
 
         <img src="https://www.pngall.com/wp-content/uploads/15/Doom-Slayer-PNG-Image.png" class="img-fluid my-3" style="max-height: 400px; object-fit: cover;" alt="Doom Slayer" data-aos="fade-up">
@@ -36,9 +36,9 @@
     </section>
 
     <!-- Section Buku -->
-    <section class="section-2 pt-5" id="buku">
+    <section class="section-2 pt-5">
         <div class="row">
-            <h2 class="fw-semibold text-primary mb-4">Buku</h2>
+            <h2 class="fw-semibold text-primary mb-4" id="buku">Buku</h2>
             @foreach ($buku->take(3) as $item)
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card card-hover h-100 shadow border-0 rounded overflow-hidden transition-card">
@@ -68,14 +68,14 @@
         </div>
 
         <div class="text-center mt-4">
-            <a href="{{ route('buku.list') }}" class="btn btn-lg btn-outline-primary" data-aos="fade-up">📚 Lihat Semua Buku</a>
+            <a href="{{ route('buku.list') }}" class="btn btn-lg btn-outline-primary" data-aos="fade-up"><i class="fa-solid fa-book"></i> Lihat Semua Buku</a>
         </div>
         <hr>
     </section>
     <!-- Section Artikel -->
-    <section class="section-3 pt-5 mb-5" id="artikel">
+    <section class="section-3 pt-5 mb-5">
         <div class="row">
-            <h2 class="fw-semibold text-primary mb-4">📝 Artikel Terbaru</h2>
+            <h2 class="fw-semibold text-primary mb-4" id="artikel"><i class="fa-solid fa-newspaper"></i> Artikel Terbaru</h2>
             @foreach ($articles as $article)
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100 shadow border-0 rounded overflow-hidden transition-card">
@@ -97,14 +97,14 @@
         </div>
 
         <div class="text-center mt-4">
-            <a href="{{ route('artikel.index') }}" class="btn btn-lg btn-outline-primary" data-aos="fade-up">📰 Lihat Semua Artikel</a>
+            <a href="{{ route('artikel.index') }}" class="btn btn-lg btn-outline-primary" data-aos="fade-up"><i class="fa-solid fa-newspaper"></i> Lihat Semua Artikel</a>
         </div>
     </section>
     <hr>
     <!-- Section Testimoni -->
 <section class="section-4 pt-5" id="testimoni">
     <div class="text-center mb-4">
-        <h2 class="fw-semibold text-primary">📢 Testimoni Pengguna</h2>
+        <h2 class="fw-semibold text-primary"><i class="fa-solid fa-bullhorn"></i> Testimoni Pengguna</h2>
         <p class="text-muted">Apa kata mereka tentang perpustakaan ini?</p>
     </div>
 
@@ -187,5 +187,5 @@
         });
     });
 </script>
-
+<script src="https://kit.fontawesome.com/683c7d9e6d.js" crossorigin="anonymous"></script>
 
