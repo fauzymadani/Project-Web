@@ -68,7 +68,8 @@ Route::get('/', [BukuController::class, 'daftarBuku'])->name('buku.baca');
 Route::get('/artikel', [ArticleController::class, 'index'])->name('artikel.index');
 /*Route::get('/artikel/{id}', [ArticleController::class, 'show'])->name('artikel.show');*/
 /*Route::get('/artikel/{slug}', [ArticleController::class, 'show'])->name('artikel.show');*/
-Route::get('/artikel/{id}', [ArticleController::class, 'show'])->name('artikel.show');
+/*Route::get('/artikel/{id}', [ArticleController::class, 'show'])->name('artikel.show');*/
+Route::get('/artikel/{slug}', [ArticleController::class, 'show'])->name('artikel.show');
 
 Route::resource("articles", ArticleController::class)->middleware("iniLogin");
 

@@ -45,12 +45,12 @@ class ArticleController extends Controller
         return redirect()->route('admin.articles.index')->with('success', 'Artikel berhasil dibuat.');
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        /*$article = Article::where('slug', $slug)->firstOrFail();*/
-        $article = Article::where('id', $id)->firstOrFail();
+        $article = Article::where('slug', $slug)->firstOrFail();
         return view('articles.show', compact('article'));
     }
+
 
     public function edit(Article $article)
     {

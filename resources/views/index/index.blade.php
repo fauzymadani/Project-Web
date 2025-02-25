@@ -86,9 +86,9 @@
     <h4 class="card-title text-primary">{{ $article->title }}</h4>
     <p class="text-muted"><strong>Diposting pada:</strong> {{ $article->created_at->format('d M Y') }}</p>
     <p class="card-text text-secondary">{!! Str::limit(Str::markdown($article->content), 100, '...') !!}</p>
-    <a href="{{ route('artikel.show', ['id' => $article->id]) }}" class="btn btn-sm btn-outline-primary mt-auto">📖 Baca Selengkapnya</a>
+    <a href="{{ route('articles.show', $article->slug) }}" class="btn btn-sm btn-outline-primary mt-auto">📖 Baca Selengkapnya</a>
+
 </div>
-<!--<a href="{{ route('artikel.show', ['id' => $article->id]) }}" class="btn btn-sm btn-outline-primary mt-auto">📖 Baca Selengkapnya</a>-->
 
 
                     </div>
