@@ -5,7 +5,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/2.0.0/trix.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=EB+Garamond&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{asset('css/font.css')}}">
+<style type="text/css">
+    .transition-card {
+    transition: transform 0.2s ease-out, box-shadow 0.3s ease-out;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    position: relative;
+    overflow: hidden;
+}
 
+.transition-card:hover {
+    box-shadow: 0px 10px 30px rgba(255, 255, 255, 0.3), 0px 0px 15px rgba(0, 255, 255, 0.5);
+}
+
+</style>
 
 <div class="container py-5">
     <!-- Section Sambutan -->
@@ -38,32 +53,32 @@
     <!-- Section Buku -->
     <section class="section-2 pt-5">
         <div class="row">
-            <h2 class="fw-semibold text-primary mb-4" id="buku">Buku</h2>
+            <h2 class="fw-semibold text-primary mb-4" id="buku"><i class="fa-solid fa-book"></i> Buku</h2>
             @foreach ($buku->take(3) as $item)
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card card-hover h-100 shadow border-0 rounded overflow-hidden transition-card">
-                        <div class="card-body d-flex flex-column">
-                            <h4 class="card-title text-primary">{{ $item->nama_buku }}</h4>
-                            <p class="text-muted mb-1"><strong>Kategori:</strong> {{ $item->kategori->kategori_buku ?? 'Tidak ada kategori' }}</p>
-                            <p class="card-text flex-grow-1 text-secondary"><strong>Deskripsi:</strong> {{ Str::limit($item->deskripsi, 100, '...') }}</p>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card card-hover h-100 shadow border-0 rounded overflow-hidden transition-card">
+                    <div class="card-body d-flex flex-column">
+                        <h4 class="card-title text-primary">{{ $item->nama_buku }}</h4>
+                        <p class="text-muted mb-1"><strong>Kategori:</strong> {{ $item->kategori->kategori_buku ?? 'Tidak ada kategori' }}</p>
+                        <p class="card-text flex-grow-1 text-secondary"><strong>Deskripsi:</strong> {{ Str::limit($item->deskripsi, 100, '...') }}</p>
 
-                            @if($item->nama_buku == "The Ultimate Guide to Life")
-                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn btn-sm btn-link mt-auto text-muted">
-    Unlock the Secret
-</a>
+                        @if($item->nama_buku == "The Ultimate Guide to Life")
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn btn-sm btn-link mt-auto text-muted">
+                            Unlock the Secret
+                        </a>
 
-                            @endif
+                        @endif
 
-                            @if($item->file_pdf)
-                                <a href="{{ asset('uploads/pdf/' . $item->file_pdf) }}" target="_blank" class="btn btn-sm btn-primary mt-auto">
-                                    📖 Lihat PDF
-                                </a>
-                            @else
-                                <p class="text-danger mt-auto">❌ Tidak ada file PDF</p>
-                            @endif
-                        </div>
+                        @if($item->file_pdf)
+                        <a href="{{ asset('uploads/pdf/' . $item->file_pdf) }}" target="_blank" class="btn btn-sm btn-primary mt-auto">
+                            📖 Lihat PDF
+                        </a>
+                        @else
+                        <p class="text-danger mt-auto">❌ Tidak ada file PDF</p>
+                        @endif
                     </div>
                 </div>
+            </div>
             @endforeach
         </div>
 
@@ -77,22 +92,22 @@
         <div class="row">
             <h2 class="fw-semibold text-primary mb-4" id="artikel"><i class="fa-solid fa-newspaper"></i> Artikel Terbaru</h2>
             @foreach ($articles as $article)
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100 shadow border-0 rounded overflow-hidden transition-card">
-                        <div class="card-body d-flex flex-column">
-    @if($article->image)
-        <!--<img src="{{ asset('storage/' . $article->image) }}" class="img-fluid rounded" style="height: 250px;">-->
-    @endif
-    <h4 class="card-title text-primary">{{ $article->title }}</h4>
-    <p class="text-muted"><strong>Diposting pada:</strong> {{ $article->created_at->format('d M Y') }}</p>
-    <p class="card-text text-secondary">{!! Str::limit(Str::markdown($article->content), 100, '...') !!}</p>
-    <a href="{{ route('articles.show', $article->slug) }}" class="btn btn-sm btn-outline-primary mt-auto">📖 Baca Selengkapnya</a>
-
-</div>
-
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow border-0 rounded overflow-hidden transition-card">
+                    <div class="card-body d-flex flex-column">
+                        @if($article->image)
+                        <!--<img src="{{ asset('storage/' . $article->image) }}" class="img-fluid rounded" style="height: 250px;">-->
+                        @endif
+                        <h4 class="title card-title text-primary">{{ $article->title }}</h4>
+                        <p class="text-muted"><strong>Diposting pada:</strong> {{ $article->created_at->format('d M Y') }}</p>
+                        <p class="content card-text text-secondary" style="font-family: 'Georgia', sans-serif;">{!! Str::limit(Str::markdown($article->content), 100, '...') !!}</p>
+                        <a href="{{ route('articles.show', $article->slug) }}" class="btn btn-sm btn-outline-primary mt-auto">📖 Baca Selengkapnya</a>
 
                     </div>
+
+
                 </div>
+            </div>
             @endforeach
         </div>
 
@@ -102,46 +117,46 @@
     </section>
     <hr>
     <!-- Section Testimoni -->
-<section class="section-4 pt-5" id="testimoni">
-    <div class="text-center mb-4">
-        <h2 class="fw-semibold text-primary"><i class="fa-solid fa-bullhorn"></i> Testimoni Pengguna</h2>
-        <p class="text-muted">Apa kata mereka tentang perpustakaan ini?</p>
-    </div>
+    <section class="section-4 pt-5" id="testimoni">
+        <div class="text-center mb-4">
+            <h2 class="fw-semibold text-primary"><i class="fa-solid fa-bullhorn"></i> Testimoni Pengguna</h2>
+            <p class="text-muted">Apa kata mereka tentang perpustakaan ini?</p>
+        </div>
 
-    <div class="testimoni-container" data-aos="fade-up">
-        <button class="scroll-btn left" onclick="scrollLeft()">&#10094;</button>
-        <div class="testimoni-wrapper">
-            <div class="testimoni-slider">
-                <div class="testimoni-card">
-                    <p class="text-secondary fst-italic">"Perpustakaannya keren! Buku digitalnya lengkap banget!"</p>
-                    <h5 class="fw-bold text-primary">- Raka S.</h5>
-                    <div class="text-warning">⭐⭐⭐⭐⭐</div>
-                </div>
-                <div class="testimoni-card">
-                    <p class="text-secondary fst-italic">"Sekarang makin mudah cari referensi buat tugas sekolah!"</p>
-                    <h5 class="fw-bold text-primary">- Nabila A.</h5>
-                    <div class="text-warning">⭐⭐⭐⭐⭐</div>
-                </div>
-                <div class="testimoni-card">
-                    <p class="text-secondary fst-italic">"Fitur eBook-nya bagus! Gak perlu repot minjem langsung ke perpustakaan."</p>
-                    <h5 class="fw-bold text-primary">- Budi P.</h5>
-                    <div class="text-warning">⭐⭐⭐⭐⭐</div>
-                </div>
-                <div class="testimoni-card">
-                    <p class="text-secondary fst-italic">"Website ini membantu banget buat nyari buku referensi!"</p>
-                    <h5 class="fw-bold text-primary">- Lina M.</h5>
-                    <div class="text-warning">⭐⭐⭐⭐</div>
-                </div>
-                <div class="testimoni-card">
-                    <p class="text-secondary fst-italic">"Developer nya jago banget ini buat web kayak gini, apalagi masih pelajar kan! beuhhh, harus di rekomendasi pkl ke PT.Diantara inimahh"</p>
-                    <h5 class="fw-bold text-primary">- Dimas W.</h5>
-                    <div class="text-warning">⭐⭐⭐⭐⭐</div>
+        <div class="testimoni-container" data-aos="fade-up">
+            <button class="scroll-btn left" onclick="scrollLeft()">&#10094;</button>
+            <div class="testimoni-wrapper">
+                <div class="testimoni-slider">
+                    <div class="testimoni-card">
+                        <p class="text-secondary fst-italic">"Perpustakaannya keren! Buku digitalnya lengkap banget!"</p>
+                        <h5 class="fw-bold text-primary">- Raka S.</h5>
+                        <div class="text-warning">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <div class="testimoni-card">
+                        <p class="text-secondary fst-italic">"Sekarang makin mudah cari referensi buat tugas sekolah!"</p>
+                        <h5 class="fw-bold text-primary">- Nabila A.</h5>
+                        <div class="text-warning">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <div class="testimoni-card">
+                        <p class="text-secondary fst-italic">"Fitur eBook-nya bagus! Gak perlu repot minjem langsung ke perpustakaan."</p>
+                        <h5 class="fw-bold text-primary">- Budi P.</h5>
+                        <div class="text-warning">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <div class="testimoni-card">
+                        <p class="text-secondary fst-italic">"Website ini membantu banget buat nyari buku referensi!"</p>
+                        <h5 class="fw-bold text-primary">- Lina M.</h5>
+                        <div class="text-warning">⭐⭐⭐⭐</div>
+                    </div>
+                    <div class="testimoni-card">
+                        <p class="text-secondary fst-italic">"Developer nya jago banget ini buat web kayak gini, apalagi masih pelajar kan! beuhhh, harus di rekomendasi pkl ke PT.Diantara inimahh"</p>
+                        <h5 class="fw-bold text-primary">- Dimas W.</h5>
+                        <div class="text-warning">⭐⭐⭐⭐⭐</div>
+                    </div>
                 </div>
             </div>
+            <button class="scroll-btn right" onclick="scrollRight()">&#10095;</button>
         </div>
-        <button class="scroll-btn right" onclick="scrollRight()">&#10095;</button>
-    </div>
-</section>
+    </section>
 
 </div>
 

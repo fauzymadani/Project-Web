@@ -2,9 +2,10 @@
 
 @section('content')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=EB+Garamond&display=swap" rel="stylesheet">
 
 <div class="container py-5">
-    <h2 class="fw-bold text-primary">{{ $article->title }}</h2>
+    <h2 class="title fw-bold text-primary">{{ $article->title }}</h2>
     <p class="text-muted"><strong>Ditulis pada:</strong> {{ $article->created_at->format('d M Y') }}</p>
     @if($article->image)
     <img src="{{ asset('storage/' . $article->image) }}" class="img-fluid">
@@ -12,24 +13,28 @@
     <div class="border-bottom mb-4"></div>
 
     <div class="content">
-        <!--{!! nl2br($article->content) !!} <!-- Menampilkan konten artikel -->
         {!! Str::markdown($article->content) !!}
     </div>
 
+    <br>
+    <br>
+    <br>
+    <br>
+    <hr>
     <div class="mt-4">
         <a href="{{ route('artikel.index') }}" class="btn btn-outline-primary">🔙 Kembali ke Daftar Artikel</a>
     </div>
 </div>
-<hr>
+<!-- <hr> -->
 <div class="container">
-<h2 class="fw-bold">Comment</h2>
-<script src="https://utteranc.es/client.js"
-        repo="fauzymadani/Project-Web"
-        issue-term="pathname"
-        label="Comment"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
+    <h2 class="fw-bold">Comment</h2>
+    <script src="https://utteranc.es/client.js"
+    repo="fauzymadani/Project-Web"
+    issue-term="pathname"
+    label="Comment"
+    theme="github-light"
+    crossorigin="anonymous"
+    async>
 </script>
 </div>
 @endsection

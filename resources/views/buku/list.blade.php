@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container py-5">
-    <h2 class="fw-semibold text-primary mb-4">📚 Semua Buku</h2>
+    <h2 class="fw-semibold text-primary mb-4"><i class="fa-solid fa-book"></i> Semua Buku</h2>
 
     <div class="row">
         @foreach ($buku as $item)

@@ -13,10 +13,10 @@
                     <img src="{{ asset('uploads/articles/' . $article->image_url) }}" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;" alt="Gambar Artikel">
                 @endif
                 <div class="card-body d-flex flex-column">
-                    <h4 class="card-title text-primary">{{ $article->title }}</h4>
+                    <h4 class="title card-title text-primary">{{ $article->title }}</h4>
                     <p class="text-muted mb-1"><strong>Ditulis pada:</strong> {{ $article->created_at->format('d M Y') }}</p>
-                    <p class="card-text text-secondary">{!! Str::limit(Str::markdown($article->content), 100, '...') !!}</p>
-                    <a href="{{ route('artikel.show', $article->id) }}" class="btn btn-sm btn-outline-primary mt-auto">
+                    <p class="content card-text text-secondary">{!! Str::limit(Str::markdown($article->content), 100, '...') !!}</p>
+                    <a href="{{ route('artikel.show', $article->slug) }}" class="btn btn-sm btn-outline-primary mt-auto">
                         📖 Baca Selengkapnya
                     </a>
                 </div>

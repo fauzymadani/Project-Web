@@ -6,9 +6,9 @@
 @endif
 
 <style>
-.delete-btn {
-    background-color: #bf616a !important;
-}
+    .delete-btn {
+        background-color: #bf616a !important;
+    }
 </style>
 <body id="page-top">
 
@@ -57,48 +57,48 @@
                                     </thead>
                                     <tbody>
                                         <?php $no = 1 ?>
-                                       @foreach($peminjaman as $item)
-<tr>
-  
-    <td>{{$item->nisn}}</td>
-    <td>{{$item->nama_peminjam}}</td>
-    <td>{{$item->tanggal_pinjam}}</td>
-    <td>{{$item->buku->nama_buku ?? 'Tidak ada buku?? '}}</td>
-    <td>{{$item->tanggal_dikembalikan}}</td>
-    <td>
-        <a class="btn btn-sm btn-primary" href="{{ url('peminjaman/'.$item->nisn.'/edit') }}">Edit</a>
-        <form action="{{ url('peminjaman/' . $item->nisn) }}"
-           method="POST" style="display: inline-block">
-         @csrf
-         @method('Delete')
-         <button class="btn btn-danger"
-         onclick="return confirm ('apakah anda ingin menghapus data?')">Delete</button>
-         </form>
-        </td>
-     </tr>
-   @endforeach
+                                        @foreach($peminjaman as $item)
+                                        <tr>
+                                          
+                                            <td>{{$item->nisn}}</td>
+                                            <td>{{$item->nama_peminjam}}</td>
+                                            <td>{{$item->tanggal_pinjam}}</td>
+                                            <td>{{$item->buku->nama_buku ?? 'Tidak ada buku?? '}}</td>
+                                            <td>{{$item->tanggal_dikembalikan}}</td>
+                                            <td>
+                                                <a class="btn btn-sm btn-primary" href="{{ url('peminjaman/'.$item->nisn.'/edit') }}">Edit</a>
+                                                <form action="{{ url('peminjaman/' . $item->nisn) }}"
+                                                 method="POST" style="display: inline-block">
+                                                 @csrf
+                                                 @method('Delete')
+                                                 <button class="btn btn-danger"
+                                                 onclick="return confirm ('apakah anda ingin menghapus data?')">Delete</button>
+                                             </form>
+                                         </td>
+                                     </tr>
+                                     @endforeach
 
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                                 </tbody>
+                             </table>
+                         </div>
+                     </div>
+                 </div>
 
-                </div>
-                <!-- /.container-fluid -->
+             </div>
+             <!-- /.container-fluid -->
 
-            </div>
-            @endsection
-            <!-- End of Main Content -->
+         </div>
+         @endsection
+         <!-- End of Main Content -->
 
-            <!-- Footer -->
+         <!-- Footer -->
 
-            <!-- End of Footer -->
+         <!-- End of Footer -->
 
-        </div>
-        <!-- End of Content Wrapper -->
+     </div>
+     <!-- End of Content Wrapper -->
 
-    </div>
+ </div>
 
 
 

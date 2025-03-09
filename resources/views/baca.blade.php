@@ -77,14 +77,6 @@
             <li class="book-item">Tidak ada file PDF ditemukan.</li>
         @endforelse
     </ul>
-    <p>
-dfs
- </p>
-    <p>
-dfs
- </p>
-
-
 
 </body>
 </html>
