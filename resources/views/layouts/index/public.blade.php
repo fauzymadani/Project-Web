@@ -451,8 +451,8 @@
             <div class="col-md-3 footer-links">
                 <h5 class="text-uppercase">Tentang</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#">Profil</a></li>
-                    <li><a href="#">Kebijakan Privasi</a></li>
+                    <li><a href="{{route('tentang.index')}}">Tentang</a></li>
+                    <li><a href="{{route('tentang.license')}}">Kebijakan Privasi</a></li>
                     <li><a href="#">Syarat & Ketentuan</a></li>
                 </ul>
             </div>

@@ -65,13 +65,13 @@ Route::get("/commits/{sha}", [GithubController::class, "show"])->name(
 Route::get('/', [BukuController::class, 'daftarBuku'])->name('buku.baca');
 /*Route::resource('articles', ArticleController::class)->middleware('iniLogin');*/
 
-Route::get('/artikel', [ArticleController::class, 'index'])->name('artikel.index');
 /*Route::get('/artikel/{id}', [ArticleController::class, 'show'])->name('artikel.show');*/
 /*Route::get('/artikel/{slug}', [ArticleController::class, 'show'])->name('artikel.show');*/
 /*Route::get('/artikel/{id}', [ArticleController::class, 'show'])->name('artikel.show');*/
 Route::get('/artikel/{slug}', [ArticleController::class, 'show'])->name('artikel.show');
+Route::get('/artikel', [ArticleController::class, 'index'])->name('artikel.index');
 
-Route::resource("articles", ArticleController::class)->middleware("iniLogin");
+Route::resource("articles", ArticleController::class);
 
 Route::prefix('adminartikel')->group(function () {
     Route::get('/artikel', [ArticleController::class, 'adminIndex'])->name('admin.articles.index');
@@ -110,3 +110,11 @@ Route::get('/site-info', function () {
 
     return view('info.index', compact('formattedTime', 'totalBuku', 'totalArticle'));
 })->name('site-info');
+
+Route::get('/tentang', function() {
+    return view('tentang.index');
+})->name('tentang.index');
+
+Route::get('privasi', function() {
+    return view('tentang.license');
+})->name('tentang.license');
