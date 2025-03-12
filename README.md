@@ -64,7 +64,10 @@ $ crontab -l # example
 
 <img height="100" src="https://res.coinpaper.com/coinpaper/f_webp,c_limit,w_3840,q_auto:good/monero_xmr_logo_d7cfda451e.png">
 
-monero: `42uxCqPSig2JZa6CBnS8pSHdxnrj7q4wqVN2xjZkfFZn4adJHyjuEpxKmcWSGjFoixTteDPM2b7tNAkzKdiMkpTY2Yd6XYh`
+monero: 
+```bash
+8AaocxJgCRciXBg5zowkpfDT5uCM6cCcdSbBqwFH4bbja5G4J7SWfnnC6PyjFBUp3p3c19RkRNsAtiRUZ4FVjU9cAnheTNr
+```
 
 ## Contributors
 <a href="https://github.com/faqihboyy/Prjoect-Web/graphs/contributors">
