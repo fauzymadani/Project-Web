@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.1deb1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 07, 2025 at 03:34 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: localhost:3306
+-- Generation Time: Apr 23, 2025 at 01:04 AM
+-- Server version: 10.11.11-MariaDB-0+deb12u1
+-- PHP Version: 8.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -46,8 +46,31 @@ CREATE TABLE `anggota` (
 
 INSERT INTO `anggota` (`id`, `nia`, `nama_anggota`, `alamat`, `jenis_kelamin`, `buku_id`, `created_at`, `updated_at`, `foto`, `role_id`) VALUES
 (1, 45678, 'Andika', 'Gordah', 'Pria', NULL, '2025-02-05 00:21:08', '2025-02-05 00:21:08', '1738740068_67a31164a1718.jpg', 1),
-(2, 45679, 'fauzy', 'Samarang', 'Pria', NULL, '2025-02-05 00:21:52', '2025-02-05 00:21:52', '1738740112_67a31190150a1.jpg', 2),
 (3, 45680, 'Fachry', 'Sukaregang', 'Pria', NULL, '2025-02-05 00:22:38', '2025-02-05 00:22:38', '1738740158_67a311becd82b.jpg', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `articles`
+--
+
+CREATE TABLE `articles` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `articles`
+--
+
+INSERT INTO `articles` (`id`, `title`, `slug`, `content`, `image`, `created_at`, `updated_at`) VALUES
+(19, 'test', 'test', 'ini kok error sih?', NULL, '2025-03-08 20:42:34', '2025-03-08 20:42:34'),
+(20, 'Kegiatan SmartTren di Smkn 1 Garut', 'kegiatan-smarttren-di-smkn-1-garut', '# test dengan header\r\nini adalah test dengan header untuk melihat performance font', NULL, '2025-03-08 21:22:49', '2025-03-08 21:22:49');
 
 -- --------------------------------------------------------
 
@@ -59,6 +82,8 @@ CREATE TABLE `buku` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `nama_buku` varchar(255) NOT NULL,
   `kategori_id` int(11) NOT NULL,
+  `file_pdf` varchar(255) DEFAULT NULL,
+  `deskripsi` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -67,22 +92,11 @@ CREATE TABLE `buku` (
 -- Dumping data for table `buku`
 --
 
-INSERT INTO `buku` (`id`, `nama_buku`, `kategori_id`, `created_at`, `updated_at`) VALUES
-(2, 'Sapiens', 1, '2025-02-04 23:50:19', '2025-02-05 00:12:00'),
-(3, 'China: Warisan Klasik dan Daya Dinamis yang Menggetarkan Dunia', 1, '2025-02-05 00:04:44', '2025-02-05 00:12:17'),
-(4, 'Sejarah Dunia yang Disembunyikan', 1, '2025-02-05 00:11:21', '2025-02-05 00:12:36'),
-(5, 'Sejarah Teh – Asal Usul dan Perkembangan Minuman Favorit Dunia', 1, '2025-02-05 00:12:50', '2025-02-05 00:12:50'),
-(6, 'World History Sejarah Dunia Lengkap', 1, '2025-02-05 00:13:03', '2025-02-05 00:13:03'),
-(7, 'Sejarah Lengkap Perang Dunia 1', 1, '2025-02-05 00:13:16', '2025-02-05 00:13:16'),
-(8, 'Dunia Kuno Empat Benua', 1, '2025-02-05 00:13:30', '2025-02-05 00:13:30'),
-(9, 'Bumi Manusia', 2, '2025-02-05 00:14:04', '2025-02-05 00:17:22'),
-(10, 'Laskar Pelangi', 2, '2025-02-05 00:14:33', '2025-02-05 00:17:08'),
-(11, 'Anak Semua Bangsa', 2, '2025-02-05 00:14:46', '2025-02-05 00:17:16'),
-(12, 'Ronggeng Dukuh Paruk', 2, '2025-02-05 00:14:59', '2025-02-05 00:18:23'),
-(13, 'Negeri 5 Menara', 2, '2025-02-05 00:15:27', '2025-02-05 00:18:41'),
-(14, 'Jejak Langkah', 2, '2025-02-05 00:15:37', '2025-02-05 00:18:32'),
-(15, 'Daun Yang Jatuh Tak Pernah Membenci Angin', 2, '2025-02-05 00:16:08', '2025-02-05 00:16:08'),
-(17, 'buku', 1, '2025-02-06 19:30:46', '2025-02-06 19:30:46');
+INSERT INTO `buku` (`id`, `nama_buku`, `kategori_id`, `file_pdf`, `deskripsi`, `created_at`, `updated_at`) VALUES
+(22, 'Setting up KEDA', 3, '1739700275_b8z5x2fa6ejf-Lab3-InstallingKEDAandSettingUpCronScaler.pdf', 'guide to settings up kubernetes with KEDA.', '2025-02-16 03:04:35', '2025-02-16 03:04:49'),
+(23, 'Ncurses Tutorial', 3, '1739701977_NCURSES-Programming-HOWTO.pdf', 'tutorial Ncurses, Ncurses adalah library di linux untuk membuat terminal user interface.', '2025-02-16 03:32:57', '2025-02-16 03:32:57'),
+(26, 'The Ultimate Guide to Life', 2, '1740299615_b8z5x2fa6ejf-Lab3-InstallingKEDAandSettingUpCronScaler.pdf', 'buku tentang guide menuju kehidupan yang lebih baik', '2025-02-23 01:33:35', '2025-02-23 01:33:35'),
+(27, 'The C Programming Language', 3, '1740390884_The ANSI C Programming Language by Brian W. Kernighan, Dennis M. Ritchie.pdf', 'Dokumentasi resmi tentang bahasa pemrograman C dalam bentuk buku.', '2025-02-24 02:54:44', '2025-02-24 03:12:08');
 
 -- --------------------------------------------------------
 
@@ -119,7 +133,8 @@ CREATE TABLE `kategori` (
 
 INSERT INTO `kategori` (`id`, `kategori_buku`, `created_at`, `updated_at`) VALUES
 (1, 'Sejarah', '2025-02-04 23:49:14', '2025-02-04 23:49:14'),
-(2, 'Novel', '2025-02-04 23:49:18', '2025-02-04 23:49:18');
+(2, 'Novel', '2025-02-04 23:49:18', '2025-02-04 23:49:18'),
+(3, 'Pemrograman', '2025-02-16 02:56:59', '2025-02-16 02:56:59');
 
 -- --------------------------------------------------------
 
@@ -149,7 +164,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (9, '2025_01_31_103452_create_roles_table', 1),
 (10, '2025_01_31_120745_add_role_id_to_anggota_table', 1),
 (11, '2025_02_03_030657_create_peminjaman_table', 1),
-(12, '2025_02_03_053408_create_kategori_table', 1);
+(12, '2025_02_03_053408_create_kategori_table', 1),
+(13, '2025_02_16_093718_add_file_pdf_to_buku_table', 2),
+(14, '2025_02_16_100037_add_deskripsi_to_buku_table', 3),
+(15, '2025_02_22_123829_create_articles_table', 4),
+(16, '2025_02_23_035930_create_articles_table', 5),
+(17, '2025_02_23_043619_add_slug_to_articles_table', 6),
+(18, '2025_02_23_115055_create_confessions_table', 7);
 
 -- --------------------------------------------------------
 
@@ -185,8 +206,7 @@ CREATE TABLE `peminjaman` (
 --
 
 INSERT INTO `peminjaman` (`id`, `nisn`, `nama_peminjam`, `tanggal_pinjam`, `tanggal_dikembalikan`, `buku_id`, `created_at`, `updated_at`) VALUES
-(1, 230001, 'Faqih', '20 Januari 2024', '1 February 2024', 9, '2025-02-05 00:23:59', '2025-02-05 00:23:59'),
-(2, 230002, 'Agungg', '1 Januari 2023', '25 Januari 2023', 10, '2025-02-05 00:25:02', '2025-02-05 00:25:02');
+(3, 34234, 'fauzy', '10 january', '15 january', 23, '2025-02-25 02:53:13', '2025-02-25 02:53:13');
 
 -- --------------------------------------------------------
 
@@ -227,7 +247,8 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id`, `roles`, `created_at`, `updated_at`) VALUES
 (1, 'kebersihan', '2025-02-05 00:20:07', '2025-02-05 00:20:07'),
 (2, 'Penjaga', '2025-02-05 00:20:10', '2025-02-05 00:20:10'),
-(3, 'Resepsionis', '2025-02-05 00:20:13', '2025-02-05 00:20:13');
+(3, 'Resepsionis', '2025-02-05 00:20:13', '2025-02-05 00:20:13'),
+(4, 'Jemput Bola', '2025-02-16 03:36:50', '2025-02-16 03:36:50');
 
 -- --------------------------------------------------------
 
@@ -243,6 +264,16 @@ CREATE TABLE `sessions` (
   `payload` longtext NOT NULL,
   `last_activity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sessions`
+--
+
+INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('jOBeE1yxIlfYFFNLeoAdh5o5J85h6Oq06EiyuLJL', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64; rv:137.0) Gecko/20100101 Firefox/137.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoidnM1QUd6dVJSanc3ZUVDcVZKTnhvZmhkVndad2g5bERucWNzWENwTCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1745368108),
+('MqAe7dddpFIqOcNheCBR1K3dGjipCKu63YoH84EV', 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64; rv:136.0) Gecko/20100101 Firefox/136.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiS1E5M2JGOGhSN0lZZkc4QnRwdnlDQjNTTk5rMXdMSmg1ZDlpT1dsTyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9zaXRlLWluZm8iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1741496372),
+('sLYe7Q9f08tOcfcNIDfi012YtXXr322tph9u8Wbp', 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64; rv:137.0) Gecko/20100101 Firefox/137.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiTk1mdHhuOFQwclUwN2pJbmdRa3ZwNlJrMmJxN3dWWnBFMzRLVE5WaCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1745370202),
+('tL7RwnZSj9UoXmZtj5gbRUFhHHuFGcDXKi31nyDH', 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64; rv:136.0) Gecko/20100101 Firefox/136.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoibkwyZHRzSFdNckp3NXpaMHlsd1NYMG1Lbk5HdDM2WE51bmhIRWQ2cSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1741768174);
 
 -- --------------------------------------------------------
 
@@ -278,6 +309,13 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 ALTER TABLE `anggota`
   ADD PRIMARY KEY (`id`),
   ADD KEY `anggota_role_id_foreign` (`role_id`);
+
+--
+-- Indexes for table `articles`
+--
+ALTER TABLE `articles`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `articles_slug_unique` (`slug`);
 
 --
 -- Indexes for table `buku`
@@ -356,10 +394,16 @@ ALTER TABLE `anggota`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `articles`
+--
+ALTER TABLE `articles`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
 -- AUTO_INCREMENT for table `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -371,19 +415,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -395,7 +439,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
