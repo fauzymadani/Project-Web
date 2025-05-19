@@ -57,6 +57,11 @@
             @foreach ($buku->take(3) as $item)
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card card-hover h-100 shadow border-0 rounded overflow-hidden transition-card">
+                    @if($item->sampul)
+                        <img src="{{ asset('uploads/sampul/' . $item->sampul) }}" class="card-img-top" alt="Sampul {{ $item->nama_buku }}">
+                    @else
+                        <img src="{{ asset('img/default-cover.jpg') }}" class="card-img-top" alt="Default Cover">
+                    @endif
                     <div class="card-body d-flex flex-column">
                         <h4 class="card-title text-primary">{{ $item->nama_buku }}</h4>
                         <p class="text-muted mb-1"><strong>Kategori:</strong> {{ $item->kategori->kategori_buku ?? 'Tidak ada kategori' }}</p>

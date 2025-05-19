@@ -485,7 +485,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("content-preview").innerHTML = marked.parse(`{!! addslashes($article->content) !!}`);
-        
+
     });
 
 </script>

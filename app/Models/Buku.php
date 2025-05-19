@@ -14,7 +14,8 @@ class Buku extends Model
         'nama_buku',
         'kategori_id',
         'file_pdf',
-        "deskripsi"
+        "deskripsi",
+        "sampul"
 
     ];
 
