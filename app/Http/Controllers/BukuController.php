@@ -27,7 +27,7 @@ class BukuController extends Controller
             'nama_buku' => 'required',
             'kategori_id' => 'required',
             'file_pdf' => 'required|mimes:pdf|max:5120',
-            'sampul' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'sampul' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
         ]);
 
         // Simpan file PDF
@@ -75,7 +75,7 @@ class BukuController extends Controller
             'nama_buku' => 'required',
             'kategori_id' => 'required',
             'file_pdf' => 'nullable|mimes:pdf|max:5120',
-            'sampul' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'sampul' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
         ]);
 
         $buku = Buku::findOrFail($id);
