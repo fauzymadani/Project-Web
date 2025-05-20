@@ -69,6 +69,9 @@ monero:
 8AaocxJgCRciXBg5zowkpfDT5uCM6cCcdSbBqwFH4bbja5G4J7SWfnnC6PyjFBUp3p3c19RkRNsAtiRUZ4FVjU9cAnheTNr
 ```
 
+## Mirror
+- https://codeberg.org/fauzymadani/Project-Web.backup
+
 ## Contributors
 <a href="https://github.com/faqihboyy/Prjoect-Web/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=faqihboyy/Prjoect-Web" />

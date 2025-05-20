@@ -282,6 +282,9 @@
       <li class="nav-item">
           <a class="nav-link" href="{{ route('site-info')}}">Info</a>
       </li>
+      <li class="nav-item">
+          <a class="nav-link" href="{{ route('peminjaman.cekStatus')}}">Cek status peminjaman</a>
+        </li>
       <!--<li class="nav-item">-->
         <!--  <a class="nav-link" href="{{ route('hashes')}}">Hash</a>-->
         <!--</li>-->
@@ -453,6 +456,7 @@
                 <ul class="list-unstyled">
                     <li><a href="{{route('tentang.index')}}">Tentang</a></li>
                     <li><a href="{{route('tentang.license')}}">Kebijakan Privasi</a></li>
+                    <li><a href="{{ asset('images/LICENSE') }}">Lisensi</a></li>
                     <li><a href="#">Syarat & Ketentuan</a></li>
                 </ul>
             </div>

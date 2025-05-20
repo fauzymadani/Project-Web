@@ -30,7 +30,7 @@ class PeminjamanController extends Controller
     public function create(): \Illuminate\View\View
     {
         $buku = Buku::all();
-       
+
 
         return view('peminjaman.create', ['buku' => $buku]); // Kirim variabel ke view
     }
@@ -148,4 +148,27 @@ class PeminjamanController extends Controller
         Peminjaman::where('nisn', $id)->delete();
         return redirect('peminjaman')->with('success', 'Data Berhasil Dihapus!');
     }
+
+    public function cekStatus(Request $request)
+    {
+    $peminjaman = null;
+
+    if ($request->has('nisn')) {
+        $request->validate([
+            'nisn' => 'required'
+        ]);
+
+        $peminjaman = Peminjaman::where('nisn', $request->nisn)
+            ->with('buku')
+            ->get();
+    }
+
+        return view('peminjaman.cek-status', compact('peminjaman'));
+    }
+
+    public function cekStatusForm()
+    {
+        return view('peminjaman.cek-status');
+    }
+
 }
