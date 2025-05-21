@@ -123,3 +123,6 @@ Route::get('privasi', function() {
 
 // Menampilkan form cek status
 Route::match(['get', 'post'], '/cek-status', [PeminjamanController::class, 'cekStatus'])->name('peminjaman.cekStatus');
+
+Route::get('/buku/{id}', [BukuController::class, 'show'])->name('buku.show');
+

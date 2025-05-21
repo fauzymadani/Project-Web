@@ -45,11 +45,31 @@ class ArticleController extends Controller
         return redirect()->route('admin.articles.index')->with('success', 'Artikel berhasil dibuat.');
     }
 
+    /* public function show($slug) */
+    /* { */
+    /*     $article = Article::where('slug', $slug)->firstOrFail(); */
+    /*     return view('articles.show', compact('article')); */
+    /* } */
+
     public function show($slug)
     {
-        $article = Article::where('slug', $slug)->firstOrFail();
-        return view('articles.show', compact('article'));
+        // Coba cari berdasarkan slug artikel
+        $article = Article::where('slug', $slug)->first();
+        if ($article) {
+            return view('articles.show', compact('article'));
+        }
+
+        // Jika tidak ditemukan, dan slug adalah angka → asumsikan ID buku
+        if (is_numeric($slug)) {
+            $buku = \App\Models\Buku::find($slug);
+            if ($buku) {
+                return view('artikel.buku', compact('buku'));
+            }
+        }
+
+        abort(404); // Kalau nggak ditemukan apa-apa
     }
+
 
 
     public function edit(Article $article)

@@ -302,7 +302,7 @@
 <!-- Search form -->
 <!-- Search form -->
 <form class="d-flex input-group w-auto" action="{{ route('buku.search') }}" method="GET">
-  <input type="search" class="form-control" name="query" placeholder="Cari buku..." aria-label="Search" />
+  <input type="search" class="form-control" name="query" placeholder="Cari buku atau artikel" aria-label="Search" />
   <button class="btn btn-outline-primary" type="submit">
     Search
   </button>
