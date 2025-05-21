@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.index.fetch')
 
 @section('content')
   <h2>Hasil pencarian untuk: "{{ $query }}"</h2>
@@ -6,7 +6,10 @@
     <ul class="list-group">
       @foreach($results as $buku)
         <li class="list-group-item">
-          <strong>{{ $buku->judul }}</strong> - {{ $buku->pengarang }}
+          <strong>{{ $buku->nama_buku }}</strong>
+          @if(isset($buku->pengarang))
+            - {{ $buku->pengarang }}
+          @endif
         </li>
       @endforeach
     </ul>

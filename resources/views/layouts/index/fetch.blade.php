@@ -118,13 +118,12 @@
         <!-- Left links -->
 
         <!-- Search form -->
-     <!-- Search form -->
-<form class="d-flex input-group w-auto" action="{{ route('buku.search') }}" method="GET">
-  <input type="search" class="form-control" name="query" placeholder="Cari buku..." aria-label="Search" />
-  <button class="btn btn-outline-primary" type="submit">
-    Search
-  </button>
-</form>
+      <form class="d-flex input-group w-auto" action="{{ route('buku.search') }}" method="GET">
+        <input type="search" class="form-control" name="query" placeholder="Cari buku..." aria-label="Search" required />
+        <button class="btn btn-outline-primary" type="submit">
+          Search
+        </button>
+      </form>
 
       <ul class="navbar-nav mb-2 mb-lg-0">
         <!-- Navbar dropdown -->

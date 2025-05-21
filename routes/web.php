@@ -99,8 +99,7 @@ Route::get('/list', [BukuController::class, 'fetchBuku'])->name('buku.list');
 Route::get('/file-hash', [HashController::class, 'index'])->name('hashes');
 Route::post('/generate-hash', [HashController::class, 'generateHash']);
 Route::get('/validate-hash', [HashController::class, 'validateHashes'])->name('validate.hash');
-
-
+Route::get('/search', [BukuController::class, 'search'])->name('buku.search');
 
 
 Route::get('/site-info', function () {
@@ -120,6 +119,7 @@ Route::get('/tentang', function() {
 Route::get('privasi', function() {
     return view('tentang.license');
 })->name('tentang.license');
+
 
 // Menampilkan form cek status
 Route::match(['get', 'post'], '/cek-status', [PeminjamanController::class, 'cekStatus'])->name('peminjaman.cekStatus');
