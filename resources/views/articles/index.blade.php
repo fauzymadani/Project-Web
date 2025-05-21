@@ -1,6 +1,7 @@
 @extends('layouts.index.public')
 
 @section('content')
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=EB+Garamond&display=swap" rel="stylesheet">
 <div class="container py-5">
     <h2 class="fw-semibold text-primary mb-4">Artikel Terbaru</h2>
 
@@ -13,9 +14,10 @@
                     <img src="{{ asset('uploads/articles/' . $article->image_url) }}" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;" alt="Gambar Artikel">
                 @endif
                 <div class="card-body d-flex flex-column">
-                    <h4 class="title card-title text-primary">{{ $article->title }}</h4>
+                    <h2 class="title card-title text-primary" style="font-family: 'EB Garamond', 'Georgia', 'Times New Roman', serif;">{{ $article->title }}</h2>
                     <p class="text-muted mb-1"><strong>Ditulis pada:</strong> {{ $article->created_at->format('d M Y') }}</p>
-                    <p class="content card-text text-secondary">{!! Str::limit(Str::markdown($article->content), 100, '...') !!}</p>
+                    <hr>
+                    <p class="content card-text text-secondary" style="font-family: 'EB Garamond', 'Georgia', 'Times New Roman', serif;">{!! Str::limit(Str::markdown($article->content), 100, '...') !!}</p>
                     <a href="{{ route('artikel.show', $article->slug) }}" class="btn btn-sm btn-outline-primary mt-auto">
                         <i class="fas fa-book"></i> Baca Selengkapnya
                     </a>

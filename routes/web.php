@@ -62,6 +62,7 @@ Route::get("/commits/{sha}", [GithubController::class, "show"])->name(
 /*});*/
 
 // Route::get('/baca', [BacaController::class, 'index']);
+// Root url
 Route::get('/', [BukuController::class, 'daftarBuku'])->name('buku.baca');
 /*Route::resource('articles', ArticleController::class)->middleware('iniLogin');*/
 

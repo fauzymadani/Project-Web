@@ -120,10 +120,10 @@
                 <div class="card h-100 shadow border-0 rounded overflow-hidden transition-card">
                     <div class="card-body d-flex flex-column">
                         @if($article->image)
-                        <!--<img src="{{ asset('storage/' . $article->image) }}" class="img-fluid rounded" style="height: 250px;">-->
                         @endif
-                        <h4 class="title card-title text-primary">{{ $article->title }}</h4>
+                        <h2 class="title card-title text-primary" style="font-family: 'EB Garamond', 'Georgia', 'Times New Roman', serif;">{{ $article->title }}</h2>
                         <p class="text-muted"><strong>Diposting pada:</strong> {{ $article->created_at->format('d M Y') }}</p>
+                        <hr>
                         <p class="content card-text text-secondary" style="font-family: 'Georgia', sans-serif;">{!! Str::limit(Str::markdown($article->content), 100, '...') !!}</p>
                         <a href="{{ route('articles.show', $article->slug) }}" class="btn btn-sm btn-outline-primary mt-auto"><i class="fas fa-book"></i> Baca Selengkapnya</a>
 
