@@ -145,5 +145,16 @@ class BukuController extends Controller
         $buku = Buku::all();
         return view('buku.list', compact('buku'));
     }
+    public function search(Request $request)
+{
+    $query = $request->query('query');
+
+    // Sesuaikan dengan kolom yang kamu cari, misalnya 'judul'
+   $results = Buku::where('nama_buku', 'LIKE', '%' . $query . '%')->get();
+
+
+    return view('buku.search', compact('results', 'query'));
+}
+
 }
 

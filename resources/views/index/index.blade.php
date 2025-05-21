@@ -25,7 +25,8 @@
 <div class="container py-5">
     <!-- Section Sambutan -->
     <section class="section-1 text-center mb-5 pb-5 border-bottom">
-        <h1 class="fw-bold text-primary" id="sambutan" data-aos="fade-up">Selamat Datang di Perpustakaan Online</h1>
+    <div class="p-4 shadow-lg rounded border border-primary" style="background: rgba(255, 255, 255, 0.9);" data-aos="fade-up">
+        <h1 class="fw-bold text-primary" id="sambutan">Selamat Datang di Perpustakaan Online</h1>
 
         <img src="https://www.pngall.com/wp-content/uploads/15/Doom-Slayer-PNG-Image.png" class="img-fluid my-3" style="max-height: 400px; object-fit: cover;" alt="Doom Slayer" data-aos="fade-up">
 

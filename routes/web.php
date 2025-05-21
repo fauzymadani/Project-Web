@@ -101,6 +101,8 @@ Route::post('/generate-hash', [HashController::class, 'generateHash']);
 Route::get('/validate-hash', [HashController::class, 'validateHashes'])->name('validate.hash');
 
 
+
+
 Route::get('/site-info', function () {
     $lastUpdated = File::lastModified(base_path('.env'));
     $formattedTime = date('Y-m-d H:i:s', $lastUpdated);
