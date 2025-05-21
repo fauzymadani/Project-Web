@@ -17,7 +17,7 @@
                     <p class="text-muted mb-1"><strong>Ditulis pada:</strong> {{ $article->created_at->format('d M Y') }}</p>
                     <p class="content card-text text-secondary">{!! Str::limit(Str::markdown($article->content), 100, '...') !!}</p>
                     <a href="{{ route('artikel.show', $article->slug) }}" class="btn btn-sm btn-outline-primary mt-auto">
-                        📖 Baca Selengkapnya
+                        <i class="fas fa-book"></i> Baca Selengkapnya
                     </a>
                 </div>
             </div>

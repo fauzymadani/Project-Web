@@ -9,47 +9,65 @@
 <link rel="stylesheet" type="text/css" href="{{asset('css/font.css')}}">
 <style type="text/css">
     .transition-card {
-    transition: transform 0.2s ease-out, box-shadow 0.3s ease-out;
-    transform-style: preserve-3d;
-    perspective: 1000px;
-    position: relative;
-    overflow: hidden;
-}
+        transition: transform 0.2s ease-out, box-shadow 0.3s ease-out;
+        transform-style: preserve-3d;
+        perspective: 1000px;
+        position: relative;
+        overflow: hidden;
+    }
 
-.transition-card:hover {
-    box-shadow: 0px 10px 30px rgba(255, 255, 255, 0.3), 0px 0px 15px rgba(0, 255, 255, 0.5);
-}
+    .transition-card:hover {
+        box-shadow: 0px 10px 30px rgba(255, 255, 255, 0.3), 0px 0px 15px rgba(0, 255, 255, 0.5);
+    }
+
+    .kepala-banner {
+        background: linear-gradient(135deg, #d1e7dd, #f8f9fa);
+        border-left: 6px solid #0d6efd;
+        max-width: 400px;
+        margin: 0 auto;
+        font-family: 'Playfair Display', serif;
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-1 .text-muted {
+        color: #6c757d !important;
+        font-size: 0.9rem;
+    }
 
 </style>
 
 <div class="container py-5">
     <!-- Section Sambutan -->
     <section class="section-1 text-center mb-5 pb-5 border-bottom">
-    <div class="p-4 shadow-lg rounded border border-primary" style="background: rgba(255, 255, 255, 0.9);" data-aos="fade-up">
-        <h1 class="fw-bold text-primary" id="sambutan">Selamat Datang di Perpustakaan Online</h1>
+    <div class="p-4 shadow-lg rounded border bg-white" data-aos="fade-up" style="font-family: 'EB Garamond', serif;">
+        <h1 class="fw-bold text-primary" id="sambutan">Sambutan Kepala Sekolah</h1>
 
-        <img src="https://www.pngall.com/wp-content/uploads/15/Doom-Slayer-PNG-Image.png" class="img-fluid my-3" style="max-height: 400px; object-fit: cover;" alt="Doom Slayer" data-aos="fade-up">
+        <img src="{{ asset('images/kepala.jpg') }}" class="img-fluid my-3 rounded" style="max-height: 320px; object-fit: cover;" alt="Kepala Sekolah" data-aos="fade-up">
 
-        <p class="lead text-primary fw-semibold" data-aos="fade-up">
-            Salam sejahtera bagi kita semua,
+        <p class="lead text-dark fw-semibold" data-aos="fade-up">
+            Assalamu’alaikum warahmatullahi wabarakatuh,
         </p>
-        <p class="text-secondary" data-aos="fade-up">
-            Puji syukur kita panjatkan ke hadirat Allah SWT atas segala rahmat dan karunia-Nya, sehingga kita dapat terus meningkatkan budaya literasi di sekolah tercinta ini. Perpustakaan merupakan jantung dari dunia pendidikan, tempat di mana ilmu pengetahuan dapat diakses dengan mudah oleh seluruh warga sekolah.
+        <p class="text-dark" data-aos="fade-up">
+            Puji syukur kita panjatkan ke hadirat Allah SWT atas segala rahmat dan karunia-Nya. Dengan hadirnya website Perpustakaan SMKN 1 Garut ini, kami berkomitmen untuk terus mendukung peningkatan literasi dan akses informasi bagi seluruh warga sekolah.
         </p>
-        <p class="text-secondary" data-aos="fade-up">
-            Seiring dengan perkembangan teknologi, kami dengan bangga menghadirkan website resmi **Perpustakaan SMKN 1 Garut** sebagai sarana untuk memberikan layanan yang lebih luas dan mudah diakses. Melalui platform ini, para siswa, guru, dan seluruh civitas akademika dapat mencari dan meminjam buku secara online, mengakses koleksi digital, serta mendapatkan informasi terbaru mengenai kegiatan literasi di perpustakaan.
+        <p class="text-dark" data-aos="fade-up">
+            Melalui platform ini, kami berharap siswa-siswi dapat dengan mudah mengakses berbagai koleksi digital, informasi literasi, serta melakukan peminjaman buku secara daring. Semoga keberadaan website ini dapat memberikan manfaat yang nyata dalam mendukung proses belajar-mengajar.
         </p>
-        <p class="text-secondary" data-aos="fade-up">
-            Kami berharap website ini dapat menjadi jembatan yang menghubungkan siswa dengan dunia ilmu pengetahuan, membangun budaya membaca, serta mendorong semangat belajar yang lebih tinggi. Kami juga mengundang seluruh warga sekolah untuk aktif memanfaatkan fasilitas ini demi meningkatkan kualitas pendidikan kita bersama.
+        <p class="text-dark" data-aos="fade-up">
+            Mari bersama kita jadikan literasi sebagai bagian dari budaya sekolah yang unggul dan berkarakter.
         </p>
         <p class="fw-semibold text-dark" data-aos="fade-up">
             Wassalamu’alaikum warahmatullahi wabarakatuh.
         </p>
-        <p class="fw-semibold text-primary" data-aos="fade-up">
-            "Rip and Tear, until it is Done.."
-        </p>
-        <p class="fw-semibold text-dark" data-aos="fade-up">~ Doom Slayer</p>
+
+        <!-- Footer dalam kontainer -->
+        <div class="mt-5 pt-3 border-top small text-muted" style="font-family: 'Merriweather', serif;" data-aos="fade-up">
+            Kepala SMKN 1 Garut<br>
+            <strong>Nama Kepala Sekolah</strong>
+        </div>
+    </div>
     </section>
+
 
     <!-- Section Buku -->
     <section class="section-2 pt-5">
@@ -77,7 +95,7 @@
 
                         @if($item->file_pdf)
                         <a href="{{ asset('uploads/pdf/' . $item->file_pdf) }}" target="_blank" class="btn btn-sm btn-primary mt-auto">
-                            📖 Lihat PDF
+                            <i class="fas fa-book"></i> Lihat PDF
                         </a>
                         @else
                         <p class="text-danger mt-auto">❌ Tidak ada file PDF</p>
@@ -107,7 +125,7 @@
                         <h4 class="title card-title text-primary">{{ $article->title }}</h4>
                         <p class="text-muted"><strong>Diposting pada:</strong> {{ $article->created_at->format('d M Y') }}</p>
                         <p class="content card-text text-secondary" style="font-family: 'Georgia', sans-serif;">{!! Str::limit(Str::markdown($article->content), 100, '...') !!}</p>
-                        <a href="{{ route('articles.show', $article->slug) }}" class="btn btn-sm btn-outline-primary mt-auto">📖 Baca Selengkapnya</a>
+                        <a href="{{ route('articles.show', $article->slug) }}" class="btn btn-sm btn-outline-primary mt-auto"><i class="fas fa-book"></i> Baca Selengkapnya</a>
 
                     </div>
 

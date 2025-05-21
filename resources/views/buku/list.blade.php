@@ -28,7 +28,7 @@
 
                         @if ($item->file_pdf)
                             <a href="{{ asset('uploads/pdf/' . $item->file_pdf) }}" target="_blank" class="btn btn-sm btn-primary mt-auto">
-                                📖 Lihat PDF
+                                <i class="fas fa-book"></i> Lihat PDF
                             </a>
                         @else
                             <p class="text-danger mt-auto">❌ Tidak ada file PDF</p>

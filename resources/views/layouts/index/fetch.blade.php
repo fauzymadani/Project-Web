@@ -111,9 +111,6 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ route('peminjaman.cekStatus')}}">Cek status peminjaman</a>
         </li>
-        <!--<li class="nav-item">-->
-          <!--  <a class="nav-link" href="{{ route('hashes')}}">Hash</a>-->
-          <!--</li>-->
         </ul>
         <!-- Left links -->
 
@@ -280,7 +277,7 @@
         <h5 class="text-uppercase">Kontak</h5>
         <p><i class="fas fa-map-marker-alt"></i> Garut, Indonesia</p>
         <p><i class="fas fa-phone"></i> +62 812 3456 7890</p>
-        <p><i class="fas fa-envelope"></i> contact@smkn1garut.ac.id</p>
+        <p><i class="fas fa-envelope"></i> fauzy_madani@smknegeri1garut.sch.id</p>
       </div>
       <div class="col-md-3 text-center">
         <h5 class="text-uppercase">Follow Us</h5>

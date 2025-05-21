@@ -67,7 +67,7 @@
 </head>
 <body>
 
-    <h2>📚 Daftar Buku PDF</h2>
+    <h2><i class="fas fa-book"></i> Daftar Buku PDF</h2>
     <ul class="book-list">
         @forelse ($pdfFiles as $pdf)
             <li class="book-item">

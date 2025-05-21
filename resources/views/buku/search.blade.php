@@ -1,41 +1,75 @@
 @extends('layouts.index.fetch')
 
 @section('content')
+<br>
+<br>
+<br>
 <div class="search-container">
   <h2 class="search-header">
     Hasil pencarian untuk: <span class="query-text">"{{ $query }}"</span>
   </h2>
 
-  {{-- Info hits dan paging --}}
-  @php
-    $totalHits = $buku->count() + $results->total();
-    $showingFrom = $results->firstItem() ?? 0;
-    $showingTo = $results->lastItem() ?? 0;
-    $timeTaken = 0.0012; // Contoh, bisa kirim waktu dari backend kalau perlu
-  @endphp
-  <p class="search-info">{{ $showingFrom }}-{{ $showingTo }} dari total <strong>{{ $totalHits }}</strong> hasil ditemukan dalam {{ number_format($timeTaken, 6) }} detik</p>
+    @php
+      $start = microtime(true);
 
-  {{-- Daftar Buku --}}
+      $buku = \App\Models\Buku::where('nama_buku', 'like', "%{$query}%")
+        ->orWhere('deskripsi', 'like', "%{$query}%")
+        ->get();
+
+      $results = \App\Models\Article::where('title', 'like', "%{$query}%")
+        ->orWhere('content', 'like', "%{$query}%")
+        ->paginate(10);
+
+      $end = microtime(true);
+      $timeTaken = $end - $start;
+
+      $totalHits = $buku->count() + $results->total();
+      $showingFrom = $results->firstItem() ?? 0;
+      $showingTo = $results->lastItem() ?? 0;
+    @endphp
+
+    <p style="
+      background-color: #e6f0ff;           /* Soft blue background */
+      color: #003366;                      /* Dark blue text */
+      border: 1px solid #3399ff;           /* Accent border */
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      animation: fadeSlideUp 0.6s ease-out;
+    ">
+      {{ $showingFrom }}-{{ $showingTo }} dari total
+      <strong style="color: #0055cc; font-weight: 600;">
+        {{ $totalHits }}
+      </strong> hasil ditemukan dalam {{ number_format($timeTaken, 6) }} detik
+    </p>
+
+
   @if($buku->count())
     <section class="search-section">
-      <h3>📚 Buku</h3>
-      <ul class="search-list">
+      <h3>Buku: </h3>
+        <br>
         @foreach ($buku as $book)
-          <li class="search-item">
             <a href="{{ asset('uploads/pdf/' . $book->file_pdf) }}" target="_blank" rel="noopener noreferrer" class="search-link" title="Buka {{ $book->nama_buku }} (PDF)">
+              <h4>
               {{ $book->nama_buku }}
               <span class="external-icon" aria-hidden="true" title="Link eksternal">
-                <!-- Icon panah external link mirip Wikipedia -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-external-link" viewBox="0 0 24 24">
+                <!-- svg icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-external-link" viewBox="0 0 24 24">
                   <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
                   <polyline points="15 3 21 3 21 9"/>
                   <line x1="10" y1="14" x2="21" y2="3"/>
                 </svg>
               </span>
+            </h4>
             </a>
-          </li>
+            {{ $book->deskripsi}}
         @endforeach
-      </ul>
+        <hr>
+        <br>
+        <br>
     </section>
   @else
     <p class="empty-message">Tidak ada buku yang cocok dengan pencarian Anda.</p>
@@ -43,17 +77,15 @@
 
   {{-- Daftar Artikel --}}
   @if($results->count())
-    <section class="search-section">
-      <h3>Artikel terkait</h3>
-      <ul class="search-list">
+    <section class="search-section" style="font-size: 15px;">
+      <h3 style="font-size: 25px;">Artikel terkait</h3>
         @foreach($results as $item)
-   <li class="search-item" style="list-style: none;">
-    <a href="{{ route('artikel.show', $item->slug) }}" class="search-link" title="Baca artikel {{ $item->title }}">
-      <h4>
+    <a href="{{ route('artikel.show', $item->slug) }}" class="search-link" title="Baca artikel {{ $item->title }}" style="text-decoration: none;">
+      <h4 style="margin-bottom: -15px;">
       {{ $item->title }}
       <span class="external-icon" aria-hidden="true" title="Link eksternal">
         <!-- icon -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-external-link" viewBox="0 0 24 24">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-external-link" viewBox="0 0 24 24">
           <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
           <polyline points="15 3 21 3 21 9"/>
           <line x1="10" y1="14" x2="21" y2="3"/>
@@ -71,11 +103,12 @@
     @endphp
 
     <div class="markdown-preview">
+      <p style="font-size: 5px;">
       {!! $parsed !!}
+      </p>
     </div>
-    </li>
+    <hr>
     @endforeach
-      </ul>
 
       {{-- Pagination --}}
       <div class="pagination-wrapper">
@@ -86,6 +119,9 @@
     <p class="empty-message">Tidak ditemukan artikel terkait untuk pencarian Anda.</p>
   @endif
 </div>
+<br>
+<br>
+<br>
 @endsection
 
 @push('styles')
@@ -100,7 +136,7 @@
 
   .search-header {
     font-size: 1.8rem;
-$artikel = \App\Models\Article::where('title', 'like', "%{$query}%")
+    $artikel = \App\Models\Article::where('title', 'like', "%{$query}%")
     ->orWhere('content', 'like', "%{$query}%")
     ->paginate(10);  // jangan pakai ->get() setelah paginate
     font-weight: 700;
@@ -109,13 +145,6 @@ $artikel = \App\Models\Article::where('title', 'like', "%{$query}%")
 
   .query-text {
     color: #0066cc;
-  }
-
-  .search-info {
-    font-size: 0.875rem;
-    color: #666;
-    margin-bottom: 1.5rem;
-    font-style: italic;
   }
 
   .search-section {
@@ -187,6 +216,34 @@ $artikel = \App\Models\Article::where('title', 'like', "%{$query}%")
     margin-top: 1.5rem;
     text-align: center;
   }
+
+  .search-info {
+      background-color: #1e1e2e;   /* Catppuccin Mocha base */
+      color: #cdd6f4;              /* Text color */
+      border: 1px solid #89b4fa;   /* Accent border */
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+  .search-info strong {
+      color: #89b4fa;              /* Highlighted number in Catppuccin Blue */
+      font-weight: 600;
+    }
+
+  @keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    }
+    }
 
   /* Responsive */
   @media (max-width: 480px) {
