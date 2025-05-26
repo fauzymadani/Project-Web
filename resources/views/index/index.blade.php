@@ -3,8 +3,8 @@
 @section('content')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/2.0.0/trix.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/2.0.0/trix.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<link rel="stylesheet" href="{{ asset('assets/aos.css') }}">
+<script src="{{ asset('assets/aos.js') }}"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=EB+Garamond&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{{asset('css/font.css')}}">
 <style type="text/css">
@@ -197,8 +197,8 @@
 @endsection
 <script src="{{ asset('script/search.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/2.0.0/trix.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
-<script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+<link rel="stylesheet" href="{{ asset('assets/easymde.min.css') }}">
+<script src="{{ asset('assets/easymde.min.js') }}"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         var easyMDE = new EasyMDE({
@@ -210,7 +210,7 @@
     });
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="{{ asset('assets/marked.min.js') }}"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("content-preview").innerHTML = marked.parse(`{!! addslashes($article->content) !!}`);
