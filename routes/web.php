@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\HashController;
 use Illuminate\Support\Facades\File;
+use App\Http\Controllers\BugController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -127,3 +129,7 @@ Route::match(['get', 'post'], '/cek-status', [PeminjamanController::class, 'cekS
 
 Route::get('/buku/{id}', [BukuController::class, 'show'])->name('buku.show');
 
+Route::get('/bugs', [BugController::class, 'index'])->name('bugs.index');
+Route::get('/bugs/create', [BugController::class, 'create'])->middleware('checkcaptcha')->name('bugs.create');
+Route::post('/bugs', [BugController::class, 'store'])->name('bugs.store');
+Route::get('/bugs/{bug}', [BugController::class, 'show'])->name('bugs.show');
