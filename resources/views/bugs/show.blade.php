@@ -59,6 +59,14 @@
     </style>
 </head>
 <body>
+    @if (session('token'))
+    <div class="alert">
+        <strong>Token Edit Anda:</strong><br>
+        <code>{{ session('token') }}</code><br>
+        <small>Simpan token ini agar bisa mengedit atau menghapus laporan ini nanti.</small>
+    </div>
+@endif
+
     <h1>{{ $bug->title }}</h1>
 
     @if ($bug->label)
@@ -68,5 +76,16 @@
     <div>{!! $htmlDescription !!}</div>
 
     <p><a href="{{ route('bugs.index') }}">← Kembali ke Daftar Bug</a></p>
+    
+    @if (request('token') === $bug->edit_token)
+    <p>
+        <a href="{{ route('bugs.edit', ['bug' => $bug->id, 'token' => request('token')]) }}">✏️ Edit Bug</a>
+    </p>
+    <form method="POST" action="{{ route('bugs.destroy', ['bug' => $bug->id, 'token' => request('token')]) }}" onsubmit="return confirm('Yakin mau hapus bug ini?')">
+        @csrf
+        @method('DELETE')
+        <button type="submit">🗑️ Hapus Bug</button>
+    </form>
+    @endif
 </body>
 </html>

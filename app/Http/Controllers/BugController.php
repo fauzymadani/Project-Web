@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Bug;
 use Illuminate\Http\Request;
 use Parsedown;
+use Illuminate\Support\Str;
 
 class BugController extends Controller
 {
@@ -30,31 +31,22 @@ class BugController extends Controller
 
     public function store(Request $request)
     {
-        $rules = [
-            'title' => 'required',
-            'description' => 'required',
-            'label' => 'nullable|string',
-            'captcha' => ['required', function ($attribute, $value, $fail) {
-                if ($value != session('captcha_answer')) {
-                    $fail('Jawaban CAPTCHA salah.');
-                }
-            }],
-        ];
-
-        $request->validate($rules);
-
-        Bug::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'label' => $request->label,
-            'active' => true,
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'label' => 'nullable|string|max:100',
         ]);
 
-        // Jangan hapus require_captcha supaya tetap pakai CAPTCHA tiap kali buka form
-        // session()->forget('require_captcha');
-        // session()->forget('captcha_answer');
+        $bug = new Bug();
+        $bug->title = $request->title;
+        $bug->description = $request->description;
+        $bug->label = $request->label;
 
-        return redirect()->route('bugs.index')->with('success', 'Bug berhasil dilaporkan.');
+        $bug->edit_token = Str::random(32);
+
+        $bug->save();
+
+        return redirect()->route('bugs.show', $bug)->with('token', $bug->edit_token);
     }
 
     public function show(Bug $bug)
@@ -63,5 +55,97 @@ class BugController extends Controller
         $htmlDescription = $parsedown->text($bug->description);
 
         return view('bugs.show', compact('bug', 'htmlDescription'));
+    }
+
+    // Edit dengan validasi token dari param request
+    public function edit(Bug $bug, Request $request)
+    {
+        if ($request->token !== $bug->edit_token) {
+            abort(403, 'Token tidak valid.');
+        }
+
+        return view('bugs.edit', compact('bug'));
+    }
+
+    public function update(Request $request, Bug $bug)
+    {
+        if ($request->token !== $bug->edit_token) {
+            abort(403, 'Token tidak valid.');
+        }
+
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'label' => 'nullable|string|max:100',
+        ]);
+
+        $bug->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'label' => $request->label,
+        ]);
+
+        return redirect()->route('bugs.show', $bug)->with('success', 'Bug berhasil diperbarui.');
+    }
+
+    public function destroy(Request $request, Bug $bug)
+    {
+        if ($request->token !== $bug->edit_token) {
+            abort(403, 'Token tidak valid.');
+        }
+
+        $bug->delete();
+
+        return redirect()->route('bugs.index')->with('success', 'Bug berhasil dihapus.');
+    }
+
+    // Form input token
+    public function enterToken()
+    {
+        return view('bugs.token');
+    }
+
+    // Proses validasi token dan redirect ke edit form
+    public function processToken(Request $request)
+    {
+        $request->validate([
+            'token' => 'required|string|size:32',
+        ]);
+
+        $bug = Bug::where('edit_token', $request->token)->first();
+
+        if (!$bug) {
+            return redirect()->back()->withErrors(['token' => 'Token tidak ditemukan atau tidak valid.']);
+        }
+
+        return redirect()->route('bugs.edit.token', ['token' => $request->token]);
+    }
+
+    // Menampilkan form edit berdasarkan token
+    public function editByToken($token)
+    {
+        $bug = Bug::where('edit_token', $token)->firstOrFail();
+
+        return view('bugs.edit', compact('bug'));
+    }
+
+    // Simpan perubahan dari form edit via token
+    public function updateByToken(Request $request, $token)
+    {
+        $bug = Bug::where('edit_token', $token)->firstOrFail();
+
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'label' => 'nullable|string|max:100',
+        ]);
+
+        $bug->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'label' => $request->label,
+        ]);
+
+        return redirect()->route('bugs.show', $bug)->with('success', 'Bug berhasil diperbarui.');
     }
 }

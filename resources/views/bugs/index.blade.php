@@ -78,6 +78,7 @@
                 <th>Judul</th>
                 <th>Label</th>
                 <th>Status</th>
+                <th>action</th>
             </tr>
         </thead>
         <tbody>
@@ -95,6 +96,9 @@
                         @endif
                     </td>
                     <td>Aktif</td>
+                    <td>
+                        <a class="toplink" href="{{ route('bugs.enter_token') }}">[ Edit Bug via Token ]</a>    
+                    <td>
                 </tr>
             @empty
                 <tr>

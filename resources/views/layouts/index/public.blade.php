@@ -284,7 +284,10 @@
       </li>
       <li class="nav-item">
           <a class="nav-link" href="{{ route('peminjaman.cekStatus')}}">Cek status peminjaman</a>
-        </li>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href="{{ route('bugs.index')}}">Bug</a>
+    </li>
       <!--<li class="nav-item">-->
         <!--  <a class="nav-link" href="{{ route('hashes')}}">Hash</a>-->
         <!--</li>-->

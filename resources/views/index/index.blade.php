@@ -39,7 +39,7 @@
 <div class="container py-5">
     <!-- Section Sambutan -->
     <section class="section-1 text-center mb-5 pb-5 border-bottom">
-    <div class="p-4 shadow-lg rounded border bg-white" data-aos="fade-up" style="font-family: 'EB Garamond', serif;">
+    <div class="p-4" data-aos="fade-up" style="font-family: 'EB Garamond', serif;">
         <h1 class="fw-bold text-primary" id="sambutan">Sambutan Kepala Sekolah</h1>
 
         <img src="{{ asset('images/kepala.jpg') }}" class="img-fluid my-3 rounded" style="max-height: 320px; object-fit: cover;" alt="Kepala Sekolah" data-aos="fade-up">
@@ -61,7 +61,7 @@
         </p>
 
         <!-- Footer dalam kontainer -->
-        <div class="mt-5 pt-3 border-top small text-muted" style="font-family: 'Merriweather', serif;" data-aos="fade-up">
+        <div class="mt-5 pt-3 small text-muted" style="font-family: 'Merriweather', serif;" data-aos="fade-up">
             Kepala SMKN 1 Garut<br>
             <strong>Nama Kepala Sekolah</strong>
         </div>

@@ -133,3 +133,13 @@ Route::get('/bugs', [BugController::class, 'index'])->name('bugs.index');
 Route::get('/bugs/create', [BugController::class, 'create'])->middleware('checkcaptcha')->name('bugs.create');
 Route::post('/bugs', [BugController::class, 'store'])->name('bugs.store');
 Route::get('/bugs/{bug}', [BugController::class, 'show'])->name('bugs.show');
+
+// Edit dan update via token
+Route::get('/bugs/edit/token', [BugController::class, 'enterToken'])->name('bugs.enter_token');
+// Proses token, redirect ke halaman edit jika valid
+Route::post('/bugs/edit/token', [BugController::class, 'processToken'])->name('bugs.process_token');
+// Form edit berdasarkan token
+Route::get('/bugs/edit/{token}', [BugController::class, 'editByToken'])->name('bugs.edit.token');
+// Simpan perubahan dari form edit
+Route::put('/bugs/edit/{token}', [BugController::class, 'updateByToken'])->name('bugs.update.token');
+Route::post('/bugs/token/process', [BugController::class, 'processToken'])->name('bugs.process_token');

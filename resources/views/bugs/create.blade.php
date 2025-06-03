@@ -72,7 +72,6 @@
         button:hover {
             background-color: #084a9e;
         }
-        /* Error box mirip Debian.org warning box */
         .alert {
             background-color: #fee;
             border: 1px solid #f99;
