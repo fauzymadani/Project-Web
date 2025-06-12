@@ -143,3 +143,4 @@ Route::get('/bugs/edit/{token}', [BugController::class, 'editByToken'])->name('b
 // Simpan perubahan dari form edit
 Route::put('/bugs/edit/{token}', [BugController::class, 'updateByToken'])->name('bugs.update.token');
 Route::post('/bugs/token/process', [BugController::class, 'processToken'])->name('bugs.process_token');
+Route::delete('/bugs/delete-by-token', [BugController::class, 'destroyByToken'])->name('bugs.delete.token');

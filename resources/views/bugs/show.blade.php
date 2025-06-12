@@ -4,100 +4,133 @@
     <meta charset="UTF-8" />
     <title>Detail Bug - {{ $bug->title }}</title>
     <style>
+        :root {
+            --bg: #1c1c1c;
+            --fg: #e0e0e0;
+            --link: #8cc2dd;
+            --link-hover: #d0e9ff;
+            --label-bg: #333;
+            --label-fg: #ddd;
+            --code-bg: #2a2a2a;
+            --code-border: #444;
+            --alert-bg: #2e2e2e;
+            --alert-border: #555;
+            --button-bg: #5a1f1f;
+            --button-hover: #7a2f2f;
+        }
+
         body {
-            font-family: "DejaVu Sans", sans-serif;
-            background-color: #ffffff;
-            color: #000;
-            margin: 2em 3em;
-            line-height: 1.5;
+            font-family: monospace;
+            background-color: var(--bg);
+            color: var(--fg);
+            margin: 2em;
+            line-height: 1.6;
+            font-size: 15px;
         }
 
         h1 {
-            font-size: 24px;
-            border-bottom: 1px solid #bbb;
+            font-size: 20px;
+            border-bottom: 1px solid #444;
             padding-bottom: 0.3em;
             margin-bottom: 1em;
+            font-weight: normal;
         }
 
-        h2, h3, h4, h5, h6 {
+        h2, h3, h4 {
             font-weight: normal;
-            border-bottom: 1px dashed #ccc;
-            color: #333;
+            color: #ccc;
             margin-top: 1.5em;
             margin-bottom: 0.7em;
         }
 
-        p {
-            margin-top: 0.4em;
-            margin-bottom: 1em;
-        }
-
-        strong {
-            font-weight: normal;
-            color: #444;
-        }
-
-        .label {
-            background-color: #eee;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.95em;
-            color: #222;
-        }
-
         a {
-            color: #0050b3;
+            color: var(--link);
             text-decoration: none;
         }
 
         a:hover {
+            color: var(--link-hover);
             text-decoration: underline;
         }
 
+        .label {
+            background-color: var(--label-bg);
+            color: var(--label-fg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
         code, pre {
-            font-family: "DejaVu Sans Mono", monospace;
-            background-color: #f4f4f4;
-            border: 1px solid #ddd;
-            padding: 0.6em;
-            font-size: 13px;
+            font-family: monospace;
+            background-color: var(--code-bg);
+            padding: 0.2em;
+            font-size: 14px;
             display: block;
             overflow-x: auto;
             border-radius: 4px;
             white-space: pre-wrap;
+            margin: 1em 0;
         }
 
         .markdown-content {
-            font-size: 15px;
-            white-space: pre-wrap;
-            margin-top: 1em;
+            /* white-space: pre-wrap; */
+            padding-left: 1.5em;
+            padding-right: 1.5em;
+            /* padding: 1.2em; */
+            border: 1px solid var(--code-border);
+            background: #222;
+            border-radius: 4px;
         }
 
         .alert {
-            background-color: #f9f9f9;
-            border: 1px solid #ccc;
+            background-color: var(--alert-bg);
+            border: 1px solid var(--alert-border);
             padding: 1em;
             margin-bottom: 1.5em;
-            border-left: 4px solid #888;
             font-size: 14px;
+            border-left: 4px solid #888;
         }
 
         button {
-            background-color: #d9534f;
             color: white;
             border: none;
-            padding: 0.5em 1em;
+            padding: 0.5em 1.2em;
             border-radius: 4px;
             cursor: pointer;
+            font-family: monospace;
+            font-size: 14px;
         }
 
         button:hover {
-            background-color: #c9302c;
+            background-color: var(--button-hover);
         }
 
-        .markdown-content {
-            border: 1px solid gray;
-            padding: 30px;
+        p {
+            margin-top: 0.8em;
         }
+
+        small {
+            color: #aaa;
+        }
+
+        h1 {
+        font-size: 20px;
+        font-weight: normal;
+        padding-bottom: 0.3em;
+        margin-bottom: 1em;
+        border-bottom: 1px solid #888;
+        color: #fff;
+    }
+
+    h2, h3, h4 {
+        font-weight: normal;
+        color: #ccc;
+        margin-top: 1.5em;
+        margin-bottom: 0.7em;
+        border-bottom: 1px dashed #444;
+        padding-bottom: 0.3em;
+    }
     </style>
 </head>
 <body>
@@ -106,11 +139,11 @@
     <div class="alert">
         <strong>Token Edit Anda:</strong><br>
         <code>{{ session('token') }}</code>
-        <p style="margin-top: 0.5em;"><small>Simpan token ini agar bisa mengedit atau menghapus laporan ini nanti.</small></p>
+        <p><small>Simpan token ini agar bisa mengedit atau menghapus laporan ini nanti.</small></p>
     </div>
 @endif
 
-<h1><strong>Subject:</strong> {{ $bug->title }}</h1>
+<h1>Subject: {{ $bug->title }}</h1>
 
 @if ($bug->label)
     <p><strong>Label:</strong> <span class="label">{{ $bug->label }}</span></p>
@@ -119,16 +152,16 @@
 
 <div class="markdown-content">{!! $htmlDescription !!}</div>
 
-<p><a href="{{ route('bugs.index') }}">← Kembali ke Daftar Bug</a></p>
+<p style="margin-top: 2em;"><a href="{{ route('bugs.index') }}">← Kembali ke Daftar Bug</a></p>
 
 @if (request('token') === $bug->edit_token)
     <p>
-        <a href="{{ route('bugs.edit', ['bug' => $bug->id, 'token' => request('token')]) }}">✏️ Edit Bug</a>
+        <a href="{{ route('bugs.edit', ['bug' => $bug->id, 'token' => request('token')]) }}">[Edit Bug]]</a>
     </p>
     <form method="POST" action="{{ route('bugs.destroy', ['bug' => $bug->id, 'token' => request('token')]) }}" onsubmit="return confirm('Yakin mau hapus bug ini?')">
         @csrf
         @method('DELETE')
-        <button type="submit">🗑️ Hapus Bug</button>
+        <button type="submit">Hapus Bug</button>
     </form>
 @endif
 

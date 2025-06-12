@@ -6,13 +6,27 @@ use App\Models\Bug;
 use Illuminate\Http\Request;
 use Parsedown;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Http;
 
 class BugController extends Controller
 {
     public function index()
     {
         $bugs = Bug::where('active', true)->latest()->get();
-        return view('bugs.index', compact('bugs'));
+
+        // Ambil changelog dari GitHub
+        $username = 'fauzymadani';   // Ganti ini sesuai user GitHub kamu
+        $repo = 'Project-Web';               // Ganti ini sesuai repo kamu
+        $url = "https://api.github.com/repos/$username/$repo/releases";
+
+        $response = Http::get($url);
+        $releases = [];
+
+        if ($response->successful()) {
+            $releases = $response->json();
+        }
+
+        return view('bugs.index', compact('bugs', 'releases'));
     }
 
     public function create()
@@ -148,4 +162,14 @@ class BugController extends Controller
 
         return redirect()->route('bugs.show', $bug)->with('success', 'Bug berhasil diperbarui.');
     }
+
+    public function destroyByToken(Request $request)
+    {
+        $token = $request->input('token');
+        $bug = Bug::where('edit_token', $token)->firstOrFail();
+        $bug->delete();
+
+        return redirect()->route('bugs.index')->with('success', 'Laporan berhasil dihapus.');
+    }
+
 }
